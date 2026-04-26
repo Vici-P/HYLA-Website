@@ -518,6 +518,19 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
 }
 .foot-socials a:hover { border-color: var(--sage); color: var(--sage); }
 
+/* Back to top */
+#back-to-top {
+  position: fixed; bottom: 32px; right: 32px; z-index: 900;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--sage-deep); border: none; cursor: none;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white); opacity: 0; pointer-events: none;
+  transition: opacity .35s, transform .35s;
+  box-shadow: 0 4px 18px rgba(44,65,88,.28);
+}
+#back-to-top.visible { opacity: 1; pointer-events: auto; }
+#back-to-top:hover { transform: translateY(-3px); }
+
 /* ============================
    RESPONSIVE
    ============================ */
@@ -575,6 +588,9 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
 <!-- CURSOR -->
 <div id="c-dot"></div>
 <div id="c-ring"></div>
+<button id="back-to-top" aria-label="Nach oben scrollen">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
 
 <!-- SKIP LINK -->
 <a href="#main" class="skip-link">Zum Inhalt springen</a>

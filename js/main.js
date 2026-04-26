@@ -370,3 +370,16 @@ gsap.to('#px-about', {
   }
   draw();
 })();
+
+/* ============================================================
+   BACK TO TOP
+   ============================================================ */
+(function initBackToTop() {
+  const btn = document.getElementById('back-to-top');
+  lenis.on('scroll', ({ scroll }) => {
+    btn.classList.toggle('visible', scroll > 400);
+  });
+  btn.addEventListener('click', () => lenis.scrollTo(0, { duration: 1.2 }));
+  btn.addEventListener('mouseenter', () => cRing.classList.add('hover'));
+  btn.addEventListener('mouseleave', () => cRing.classList.remove('hover'));
+})();
