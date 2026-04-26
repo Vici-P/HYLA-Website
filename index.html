@@ -23,21 +23,15 @@
 <!-- LCP: Hero-Bild vorladen -->
 <link rel="preload" as="image" href="Branding/Bilder/Produkte/HylaTulpen.jpg" fetchpriority="high">
 
-<!-- Fonts: preconnect + non-blocking load -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"></noscript>
+<!-- Fonts: lokal gehostet – keine Verbindung zu Google-Servern -->
+<link rel="preload" as="style" href="css/fonts.css" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="css/fonts.css"></noscript>
 
-<!-- CDN preconnect -->
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-
-<!-- Scripts: defer – nie render-blocking -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+<!-- Scripts: lokal gehostet – keine externen CDN-Verbindungen -->
+<script src="js/three.min.js" defer></script>
+<script src="js/gsap.min.js" defer></script>
+<script src="js/ScrollTrigger.min.js" defer></script>
+<script src="js/lenis.min.js" defer></script>
 <script src="js/main.js" defer></script>
 
 <!-- JSON-LD: LocalBusiness -->
@@ -553,6 +547,26 @@ a    { text-decoration: none; color: inherit; }
   transition: transform .3s var(--ease-out), box-shadow .3s, background .3s;
 }
 .form-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(44,65,88,.25); background: var(--blue); }
+.form-consent { margin-top: 4px; }
+.form-checkbox {
+  display: flex; align-items: flex-start; gap: 12px;
+  cursor: pointer; font-size: 13px; color: var(--muted); line-height: 1.5;
+}
+.form-checkbox input { display: none; }
+.form-check-box {
+  width: 18px; height: 18px; min-width: 18px; border-radius: 5px;
+  border: 1.5px solid var(--border); background: var(--cream);
+  margin-top: 1px; display: flex; align-items: center; justify-content: center;
+  transition: border-color .2s, background .2s;
+}
+.form-checkbox input:checked ~ .form-check-box {
+  background: var(--sage-deep); border-color: var(--sage-deep);
+}
+.form-checkbox input:checked ~ .form-check-box::after {
+  content: ''; width: 5px; height: 9px; border: 2px solid var(--white);
+  border-top: none; border-left: none; transform: rotate(45deg) translateY(-1px);
+}
+.form-checkbox a { color: var(--sage-deep); text-decoration: underline; }
 
 /* ============================
    FOOTER
@@ -977,6 +991,14 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
           <textarea id="cf-nachricht" name="nachricht" placeholder="Deine Nachricht an mich …"></textarea>
         </div>
 
+        <div class="form-group form-consent">
+          <label class="form-checkbox">
+            <input type="checkbox" name="datenschutz" required>
+            <span class="form-check-box"></span>
+            <span>Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zur Kontaktaufnahme zu. *</span>
+          </label>
+        </div>
+
         <button type="submit" class="form-submit magnetic">Anfrage absenden</button>
       </form>
     </div>
@@ -1013,7 +1035,7 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
     </div>
   </div>
   <div class="foot-bottom">
-    <span>© 2026 Victoria Petermaier · deinfrosch.at · Alle Rechte vorbehalten</span>
+    <span>© 2026 Victoria Petermaier · deinfrosch.at · Alle Rechte vorbehalten &nbsp;|&nbsp; <a href="impressum.html" style="color:rgba(255,255,255,.45);text-decoration:none;transition:color .3s" onmouseover="this.style.color='#aac2b4'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Impressum</a> &nbsp;|&nbsp; <a href="datenschutz.html" style="color:rgba(255,255,255,.45);text-decoration:none;transition:color .3s" onmouseover="this.style.color='#aac2b4'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Datenschutz</a></span>
     <div class="foot-socials">
       <a href="https://www.instagram.com" target="_blank" aria-label="Instagram" rel="noopener noreferrer">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
