@@ -282,9 +282,9 @@ document.querySelectorAll('.testi-card').forEach((card, i) => {
 /* ============================================================
    CTA SECTION
    ============================================================ */
-['.cta-title','.cta-sub','.cta-btns','.cta-note'].forEach((sel, i) => {
+['.cta-title','.cta-sub','.cta-contact-btns','.cta-note','.cta-form-wrap'].forEach((sel, i) => {
   gsap.to(sel, {
-    opacity: 1, y: 0, duration: .8, ease: 'power3.out', delay: i * .14,
+    opacity: 1, y: 0, duration: .8, ease: 'power3.out', delay: i * .12,
     scrollTrigger: { trigger: '#cta', start: 'top 78%' }
   });
 });
