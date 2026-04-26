@@ -64,6 +64,8 @@ document.querySelectorAll('.magnetic').forEach(btn => {
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
+  canvas.style.width = '';
+  canvas.style.height = '';
 
   const scene  = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(72, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -131,6 +133,8 @@ document.querySelectorAll('.magnetic').forEach(btn => {
 
   window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
+    canvas.style.width = '';
+    canvas.style.height = '';
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
   }, { passive: true });
@@ -224,7 +228,7 @@ ScrollTrigger.create({
    ============================================================ */
 document.querySelectorAll('.pain-item').forEach((el, i) => {
   gsap.to(el, {
-    opacity: 1, x: 0, duration: .7, ease: 'power3.out', delay: i * .14,
+    opacity: 1, y: 0, duration: .7, ease: 'power3.out', delay: i * .14,
     scrollTrigger: { trigger: el, start: 'top 88%' }
   });
 });
@@ -253,7 +257,7 @@ document.querySelectorAll('.step').forEach((step, i) => {
    ABOUT
    ============================================================ */
 gsap.to('.about-quote', {
-  opacity: 1, x: 0, duration: .9, ease: 'power3.out',
+  opacity: 1, y: 0, duration: .9, ease: 'power3.out',
   scrollTrigger: { trigger: '.about-quote', start: 'top 82%' }
 });
 gsap.to('.about-txt', {
