@@ -376,6 +376,47 @@ gsap.to('#px-about', {
 })();
 
 /* ============================================================
+   CONTACT FORM – AJAX SUBMISSION
+   ============================================================ */
+(function initContactForm() {
+  const form    = document.querySelector('.cta-form');
+  const success = document.getElementById('cf-success');
+  const error   = document.getElementById('cf-error');
+  if (!form) return;
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    error.style.display = 'none';
+
+    const btn = form.querySelector('[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Wird gesendet …';
+
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch('https://formspree.io/f/xaqaznoa', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' },
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      } else {
+        const json = await res.json().catch(() => ({}));
+        throw new Error(json.error || 'server error');
+      }
+    } catch (err) {
+      error.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Anfrage absenden';
+    }
+  });
+})();
+
+/* ============================================================
    BACK TO TOP
    ============================================================ */
 (function initBackToTop() {
