@@ -442,9 +442,11 @@ gsap.to('#px-about', {
         form.style.display = 'none';
         success.style.display = 'block';
       } else {
-        throw new Error('api error');
+        const json = await res.json().catch(() => ({}));
+        throw new Error(json.message || json.error || `HTTP ${res.status}`);
       }
     } catch (err) {
+      error.textContent = `Fehler: ${err.message}`;
       error.style.display = 'block';
       btn.disabled = false;
       btn.textContent = 'Anfrage absenden';
