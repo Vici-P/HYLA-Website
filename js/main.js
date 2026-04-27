@@ -59,7 +59,7 @@ document.querySelectorAll('.magnetic').forEach(btn => {
 /* ============================================================
    THREE.JS HERO PARTICLES
    ============================================================ */
-(function initThree() {
+function initThree() {
   const canvas   = document.getElementById('hero-canvas');
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -138,7 +138,15 @@ document.querySelectorAll('.magnetic').forEach(btn => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
   }, { passive: true });
-})();
+}
+
+/* Three.js nach LCP dynamisch laden – blockiert nicht den ersten Paint */
+window.addEventListener('load', () => {
+  const s = document.createElement('script');
+  s.src = 'js/three.min.js';
+  s.onload = initThree;
+  document.head.appendChild(s);
+}, { once: true, passive: true });
 
 /* ============================================================
    PRELOADER

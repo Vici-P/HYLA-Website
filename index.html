@@ -21,18 +21,17 @@
 <meta name="twitter:image"       content="https://vici-p.github.io/HYLA-Website/Branding/Bilder/Produkte/HylaTulpen.jpg">
 
 <!-- LCP: Hero-Bild vorladen -->
-<link rel="preload" as="image" href="Branding/Bilder/Produkte/HylaTulpen.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="Branding/Bilder/Produkte/HylaTulpen.webp" type="image/webp" fetchpriority="high">
 
 <!-- Fonts: lokal gehostet – keine Verbindung zu Google-Servern -->
 <link rel="preload" as="style" href="css/fonts.css" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="css/fonts.css"></noscript>
 
 <!-- Scripts: lokal gehostet – keine externen CDN-Verbindungen -->
-<script src="js/three.min.js" defer></script>
 <script src="js/gsap.min.js" defer></script>
 <script src="js/ScrollTrigger.min.js" defer></script>
 <script src="js/lenis.min.js" defer></script>
-<script src="js/main.js?v=4" defer></script>
+<script src="js/main.js?v=5" defer></script>
 
 <!-- JSON-LD: LocalBusiness -->
 <script type="application/ld+json">
@@ -185,7 +184,6 @@ a    { text-decoration: none; color: inherit; }
 #hero {
   position: relative; height: 100vh; min-height: 680px;
   display: flex; align-items: center; overflow: hidden;
-  background: url('Branding/Bilder/Produkte/HylaTulpen.jpg') center/cover no-repeat;
 }
 .hero-overlay {
   position: absolute; inset: 0; z-index: 2; pointer-events: none;
@@ -196,6 +194,7 @@ a    { text-decoration: none; color: inherit; }
     rgba(245,242,238,.08) 100%
   );
 }
+.hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
 #hero-canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; z-index: 3; }
 
 .hero-content {
@@ -725,6 +724,10 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
 
 <!-- HERO -->
 <section id="hero">
+  <picture>
+    <source srcset="Branding/Bilder/Produkte/HylaTulpen.webp" type="image/webp">
+    <img src="Branding/Bilder/Produkte/HylaTulpen.jpg" alt="" class="hero-bg" fetchpriority="high" decoding="async" width="1920" height="1280" loading="eager">
+  </picture>
   <div class="hero-overlay"></div>
   <canvas id="hero-canvas"></canvas>
   <div class="hero-content">
@@ -765,7 +768,10 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
 <!-- PAIN -->
 <section id="pain">
   <div class="pain-img-wrap">
-    <img id="px-pain" src="Branding/Bilder/Produkte/HYLABoden.jpg" alt="HYLA Bodenreinigung – Wischmopp auf Holzboden" width="800" height="1200" loading="lazy">
+    <picture>
+      <source srcset="Branding/Bilder/Produkte/HYLABoden.webp" type="image/webp">
+      <img id="px-pain" src="Branding/Bilder/Produkte/HYLABoden.jpg" alt="HYLA Bodenreinigung auf Holzboden" width="800" height="1200" loading="lazy" decoding="async">
+    </picture>
   </div>
   <div class="pain-content">
     <div class="s-eye">Kennst du das?</div>
@@ -822,7 +828,10 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
 
     <div class="prod-card">
       <div class="prod-img">
-        <img src="Branding/Bilder/Produkte/HYLA_sofa.jpg" alt="HYLA EST Reinigungssystem auf dem Sofa" width="700" height="1050" loading="lazy">
+        <picture>
+          <source srcset="Branding/Bilder/Produkte/HYLA_sofa.webp" type="image/webp">
+          <img src="Branding/Bilder/Produkte/HYLA_sofa.jpg" alt="HYLA EST Reinigungssystem auf dem Sofa" width="700" height="1050" loading="lazy" decoding="async">
+        </picture>
         <div class="prod-badge">Täglicher Begleiter</div>
       </div>
       <div class="prod-body">
@@ -840,7 +849,10 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
 
     <div class="prod-card">
       <div class="prod-img">
-        <img src="Branding/Bilder/Produkte/Steamer - 1 (1).png" alt="HYLA STEAMER Trockendampfreiniger" width="700" height="1050" loading="lazy">
+        <picture>
+          <source srcset="Branding/Bilder/Produkte/Steamer.webp" type="image/webp">
+          <img src="Branding/Bilder/Produkte/Steamer - 1 (1).png" alt="HYLA STEAMER Trockendampfreiniger" width="700" height="1050" loading="lazy" decoding="async">
+        </picture>
         <div class="prod-badge" style="background:var(--mauve); white-space:normal; text-align:center; max-width:160px; line-height:1.35; letter-spacing:.06em; padding:7px 14px;">Gegen hartnäckigen Schmutz &amp; Desinfektion</div>
       </div>
       <div class="prod-body">
@@ -895,7 +907,10 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
     </div>
   </div>
   <div class="about-img-wrap">
-    <img id="px-about" src="Branding/Bilder/Foto_Victoria.jpg" alt="Victoria Petermaier, zertifizierte HYLA-Beraterin" width="800" height="1200" loading="lazy">
+    <picture>
+      <source srcset="Branding/Bilder/Foto_Victoria.webp" type="image/webp">
+      <img id="px-about" src="Branding/Bilder/Foto_Victoria.jpg" alt="Victoria Petermaier, zertifizierte HYLA-Beraterin" width="800" height="1200" loading="lazy" decoding="async">
+    </picture>
     <div class="about-badge">
       <strong>Victoria Petermaier</strong>
       <span>Zertifizierte HYLA-Beraterin</span>
