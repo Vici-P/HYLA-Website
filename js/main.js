@@ -376,81 +376,35 @@ gsap.to('#px-about', {
 })();
 
 /* ============================================================
-   CONTACT FORM – AJAX SUBMISSION (Brevo)
+   CONTACT FORM – MAILTO
    ============================================================ */
 (function initContactForm() {
   const form    = document.querySelector('.cta-form');
   const success = document.getElementById('cf-success');
-  const error   = document.getElementById('cf-error');
   if (!form) return;
 
-  function esc(str) {
-    return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  }
-
-  form.addEventListener('submit', async function(e) {
+  form.addEventListener('submit', function(e) {
     e.preventDefault();
-    error.style.display = 'none';
-
-    const btn = form.querySelector('[type="submit"]');
-    btn.disabled = true;
-    btn.textContent = 'Wird gesendet …';
-
     const d = Object.fromEntries(new FormData(form));
 
-    const html = `
-<div style="font-family:Arial,sans-serif;max-width:580px;color:#1c2b25;">
-  <h2 style="color:#2c4158;border-bottom:2px solid #aac2b4;padding-bottom:10px;margin-bottom:20px;">
-    Neue Anfrage – dein frosch HYLA
-  </h2>
-  <table style="width:100%;border-collapse:collapse;font-size:15px;">
-    <tr><td style="padding:7px 0;color:#5a6b62;width:150px;">Name</td>
-        <td style="padding:7px 0;"><strong>${esc(d.vorname)} ${esc(d.nachname)}</strong></td></tr>
-    <tr><td style="padding:7px 0;color:#5a6b62;">E-Mail</td>
-        <td style="padding:7px 0;">${esc(d.email)}</td></tr>
-    <tr><td style="padding:7px 0;color:#5a6b62;">Telefon</td>
-        <td style="padding:7px 0;">${esc(d.telefon)}</td></tr>
-    <tr><td style="padding:7px 0;color:#5a6b62;">Wohnort</td>
-        <td style="padding:7px 0;">${esc(d.wohnort)}</td></tr>
-    <tr><td style="padding:7px 0;color:#5a6b62;">Anliegen</td>
-        <td style="padding:7px 0;">${esc(d.anliegen || '–')}</td></tr>
-    <tr><td style="padding:7px 0;color:#5a6b62;">Kontaktweg</td>
-        <td style="padding:7px 0;">${esc(d.kontaktweg || '–')}</td></tr>
-    ${d.nachricht ? `<tr><td style="padding:7px 0;color:#5a6b62;vertical-align:top;">Nachricht</td>
-        <td style="padding:7px 0;">${esc(d.nachricht).replace(/\n/g,'<br>')}</td></tr>` : ''}
-  </table>
-</div>`;
+    const body =
+      'Name: ' + d.vorname + ' ' + d.nachname + '\n' +
+      'E-Mail: ' + d.email + '\n' +
+      'Telefon: ' + d.telefon + '\n' +
+      'Wohnort: ' + d.wohnort + '\n' +
+      'Anliegen: ' + (d.anliegen || '–') + '\n' +
+      'Kontaktweg: ' + (d.kontaktweg || '–') + '\n' +
+      (d.nachricht ? '\nNachricht:\n' + d.nachricht : '');
 
-    try {
-      const res = await fetch('https://api.brevo.com/v3/smtp/email', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'api-key': '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',
-        },
-        body: JSON.stringify({
-          sender:    { name: 'dein frosch Website', email: 'office@deinfrosch.at' },
-          to:        [{ email: 'vici.hyla@gmail.com', name: 'Victoria Petermaier' }],
-          replyTo:   { email: d.email, name: `${d.vorname} ${d.nachname}` },
-          subject:   `Neue Anfrage: ${d.anliegen || 'Kontakt'} – ${d.vorname} ${d.nachname}`,
-          htmlContent: html,
-        }),
-      });
+    const subject = 'Neue Anfrage: ' + (d.anliegen || 'Kontakt') + ' – ' + d.vorname + ' ' + d.nachname;
 
-      if (res.ok) {
-        form.style.display = 'none';
-        success.style.display = 'block';
-      } else {
-        const json = await res.json().catch(() => ({}));
-        throw new Error(json.message || json.error || `HTTP ${res.status}`);
-      }
-    } catch (err) {
-      error.textContent = `Fehler: ${err.message}`;
-      error.style.display = 'block';
-      btn.disabled = false;
-      btn.textContent = 'Anfrage absenden';
-    }
+    window.location.href =
+      'mailto:vici.hyla@gmail.com' +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
+
+    form.style.display = 'none';
+    success.style.display = 'block';
   });
 })();
 
