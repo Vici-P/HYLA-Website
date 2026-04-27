@@ -430,7 +430,7 @@ gsap.to('#px-about', {
           'api-key': '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',
         },
         body: JSON.stringify({
-          sender:    { name: 'dein frosch Website', email: 'vici.hyla@gmail.com' },
+          sender:    { name: 'dein frosch Website', email: 'office@deinfrosch.at' },
           to:        [{ email: 'vici.hyla@gmail.com', name: 'Victoria Petermaier' }],
           replyTo:   { email: d.email, name: `${d.vorname} ${d.nachname}` },
           subject:   `Neue Anfrage: ${d.anliegen || 'Kontakt'} – ${d.vorname} ${d.nachname}`,
