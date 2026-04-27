@@ -427,7 +427,7 @@ gsap.to('#px-about', {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'api-key': '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',
+          'api-key': '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',
         },
         body: JSON.stringify({
           sender:    { name: 'dein frosch Website', email: 'office@deinfrosch.at' },
