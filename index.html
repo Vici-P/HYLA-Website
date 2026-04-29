@@ -32,6 +32,7 @@
 <script src="js/ScrollTrigger.min.js" defer></script>
 <script src="js/lenis.min.js" defer></script>
 <script src="js/main.js?v=5" defer></script>
+<script src="js/nav.js" defer></script>
 
 <!-- JSON-LD: LocalBusiness -->
 <script type="application/ld+json">
@@ -177,6 +178,11 @@ a    { text-decoration: none; color: inherit; }
 }
 .nav-cta:hover { color: var(--white); }
 .nav-cta:hover::before { transform: scaleX(1); }
+.nav-burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; z-index: 1010; }
+.nav-burger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: transform .3s var(--ease-out), opacity .2s; }
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ============================
    HERO
@@ -613,11 +619,36 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
 #back-to-top:hover { transform: translateY(-3px); }
 
 /* ============================
+   BLOG PREVIEW SECTION
+   ============================ */
+.blog-preview { padding: 110px 64px; background: var(--cream-mid); }
+.blog-preview-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 56px; }
+.blog-preview-head h2 { font-family: var(--fh); font-size: clamp(28px,3.5vw,44px); font-weight: 300; color: var(--text); }
+.blog-preview-head h2 em { font-style: italic; color: var(--sage-mid); }
+.blog-preview-link { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--sage-mid); border-bottom: 1px solid var(--sage-mid); padding-bottom: 2px; transition: color .3s, border-color .3s; white-space: nowrap; }
+.blog-preview-link:hover { color: var(--sage-deep); border-color: var(--sage-deep); }
+.blog-preview-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+.bp-card { background: var(--white); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; text-decoration: none; color: inherit; transition: transform .35s var(--ease-out), box-shadow .35s; }
+.bp-card:hover { transform: translateY(-6px); box-shadow: 0 20px 56px rgba(44,65,88,.12); }
+.bp-card-img { aspect-ratio: 16/9; overflow: hidden; }
+.bp-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s var(--ease-out); }
+.bp-card:hover .bp-card-img img { transform: scale(1.04); }
+.bp-card-body { padding: 28px 28px 32px; flex: 1; display: flex; flex-direction: column; }
+.bp-card-cat { font-size: 10.5px; letter-spacing: .3em; text-transform: uppercase; color: var(--sage-mid); margin-bottom: 12px; }
+.bp-card-title { font-family: var(--fh); font-size: clamp(17px,1.6vw,22px); font-weight: 300; color: var(--text); line-height: 1.25; margin-bottom: 12px; }
+.bp-card-excerpt { font-size: 13.5px; color: var(--muted); line-height: 1.7; flex: 1; }
+.bp-card-more { margin-top: 20px; font-size: 11.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--sage-mid); display: flex; align-items: center; gap: 6px; }
+.bp-card-more svg { transition: transform .3s; }
+.bp-card:hover .bp-card-more svg { transform: translateX(4px); }
+
+/* ============================
    RESPONSIVE
    ============================ */
 @media (max-width: 1100px) {
   #nav, #nav.scrolled { padding-left: 40px; padding-right: 40px; }
   .section { padding: 110px 40px; }
+  .blog-preview { padding: 80px 40px; }
+  .blog-preview-grid { gap: 20px; }
   .hero-content, .hero-scroll { left: 40px; padding-left: 40px; }
   .trust-bar { gap: 44px; padding: 44px 40px; }
   .pain-content, .about-content { padding: 90px 60px; }
@@ -639,7 +670,10 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
 @media (max-width: 768px) {
   body { cursor: auto; }
   #c-dot, #c-ring { display: none; }
-  #nav .nav-links { display: none; }
+  .nav-burger { display: flex; }
+  #nav .nav-links { position: fixed; inset: 0; flex-direction: column; align-items: center; justify-content: center; gap: 40px; background: var(--cream); opacity: 0; pointer-events: none; transition: opacity .35s var(--ease-out); z-index: 999; }
+  #nav .nav-links.open { opacity: 1; pointer-events: auto; }
+  #nav .nav-links a { font-size: 22px; letter-spacing: .08em; }
   #nav, #nav.scrolled { padding: 16px 20px; }
   .hero-content { padding: 0 20px; max-width: 100%; left: 0 !important; }
   .hero-scroll { display: none; }
@@ -667,6 +701,9 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
   .foot-bottom span { font-size: 11px; line-height: 1.7; }
   footer { padding: 56px 20px 36px; }
   #back-to-top { bottom: 20px; right: 20px; width: 42px; height: 42px; }
+  .blog-preview { padding: 64px 20px; }
+  .blog-preview-grid { grid-template-columns: 1fr; }
+  .blog-preview-head { margin-bottom: 36px; }
 }
 
 @media (max-width: 480px) {
@@ -709,7 +746,7 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
 <header>
 <nav id="nav" aria-label="Hauptnavigation">
   <a href="#"><img src="Branding/Logo NEU - kleiners V (2).png.png" alt="dein frosch Logo" class="nav-logo"></a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="nav-menu">
     <li><a href="#pain">Warum HYLA</a></li>
     <li><a href="#products">Produkte</a></li>
     <li><a href="#how">So geht's</a></li>
@@ -718,6 +755,9 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
     <li><a href="blog.html">Blog</a></li>
     <li><a href="#cta">Kontakt</a></li>
   </ul>
+  <button id="nav-burger" class="nav-burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 </header>
 
@@ -1064,6 +1104,62 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
   </div>
 </section>
 
+<!-- BLOG PREVIEW -->
+<section class="blog-preview">
+  <div class="blog-preview-head">
+    <h2>Aus dem <em>Blog</em></h2>
+    <a href="blog.html" class="blog-preview-link">Alle Artikel →</a>
+  </div>
+  <div class="blog-preview-grid">
+
+    <a href="blog/hyla-steamer-dampfreiniger.html" class="bp-card">
+      <div class="bp-card-img">
+        <picture>
+          <source srcset="Branding/Bilder/Produkte/SteamerHero.webp" type="image/webp">
+          <img src="Branding/Bilder/Produkte/SteamerHero.webp" alt="HYLA STEAMER Dampfreiniger" width="600" height="338" loading="lazy">
+        </picture>
+      </div>
+      <div class="bp-card-body">
+        <p class="bp-card-cat">Dampfreiniger</p>
+        <h3 class="bp-card-title">HYLA STEAMER – Sauber mit der Kraft des Dampfes</h3>
+        <p class="bp-card-excerpt">Wie der HYLA STEAMER ohne Chemie tiefenreinigt – und warum er in jedem Haushalt einen Unterschied macht.</p>
+        <span class="bp-card-more">Weiterlesen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+
+    <a href="blog/hyla-abendroutine.html" class="bp-card">
+      <div class="bp-card-img">
+        <picture>
+          <source srcset="Branding/Bilder/Produkte/HYLA_sofa.webp" type="image/webp">
+          <img src="Branding/Bilder/Produkte/HYLA_sofa.webp" alt="HYLA Abendroutine" width="600" height="338" loading="lazy">
+        </picture>
+      </div>
+      <div class="bp-card-body">
+        <p class="bp-card-cat">Lifestyle</p>
+        <h3 class="bp-card-title">Meine HYLA Abendroutine – Entspannt in den Abend</h3>
+        <p class="bp-card-excerpt">Wie ich meinen Abend mit dem HYLA-System ruhiger und die Luft in unserem Zuhause spürbar besser mache.</p>
+        <span class="bp-card-more">Weiterlesen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+
+    <a href="blog/hyla-kaufen.html" class="bp-card">
+      <div class="bp-card-img">
+        <picture>
+          <source srcset="Branding/Bilder/Produkte/HylaTulpen.webp" type="image/webp">
+          <img src="Branding/Bilder/Produkte/HylaTulpen.webp" alt="HYLA kaufen" width="600" height="338" loading="lazy">
+        </picture>
+      </div>
+      <div class="bp-card-body">
+        <p class="bp-card-cat">Ratgeber</p>
+        <h3 class="bp-card-title">HYLA kaufen – So läuft der Kauf mit persönlicher Beratung ab</h3>
+        <p class="bp-card-excerpt">Alles, was du über den HYLA-Kaufprozess wissen solltest – von der Vorführung bis zur Lieferung.</p>
+        <span class="bp-card-more">Weiterlesen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
 </main>
 
 <!-- FOOTER -->
@@ -1095,14 +1191,14 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
   <div class="foot-bottom">
     <span>© 2026 Victoria Petermaier · deinfrosch.at · Alle Rechte vorbehalten &nbsp;|&nbsp; <a href="impressum.html" style="color:rgba(255,255,255,.45);text-decoration:none;transition:color .3s" onmouseover="this.style.color='#aac2b4'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Impressum</a> &nbsp;|&nbsp; <a href="datenschutz.html" style="color:rgba(255,255,255,.45);text-decoration:none;transition:color .3s" onmouseover="this.style.color='#aac2b4'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Datenschutz</a></span>
     <div class="foot-socials">
-      <a href="https://www.instagram.com" target="_blank" aria-label="Instagram" rel="noopener noreferrer">
+      <a href="https://www.instagram.com/vici_living/" target="_blank" aria-label="Instagram" rel="noopener noreferrer">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <rect x="2" y="2" width="20" height="20" rx="5"/>
           <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
           <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
         </svg>
       </a>
-      <a href="https://www.pinterest.com" target="_blank" aria-label="Pinterest" rel="noopener noreferrer">
+      <a href="https://at.pinterest.com/vici_living/" target="_blank" aria-label="Pinterest" rel="noopener noreferrer">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.75 1.22-5.17 1.22-5.17s-.31-.63-.31-1.55c0-1.45.84-2.54 1.89-2.54.89 0 1.32.67 1.32 1.47 0 .9-.57 2.23-.87 3.47-.25 1.04.52 1.88 1.54 1.88 1.84 0 3.08-2.37 3.08-5.16 0-2.13-1.44-3.62-3.5-3.62-2.38 0-3.78 1.79-3.78 3.63 0 .72.28 1.49.62 1.91.07.08.08.16.06.24l-.23.95c-.04.16-.13.19-.3.11-1.12-.52-1.82-2.17-1.82-3.49 0-2.83 2.06-5.44 5.94-5.44 3.12 0 5.55 2.22 5.55 5.19 0 3.1-1.95 5.59-4.66 5.59-.91 0-1.77-.47-2.06-1.03l-.56 2.09c-.2.78-.75 1.76-1.12 2.35.84.26 1.74.4 2.66.4 5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
         </svg>
