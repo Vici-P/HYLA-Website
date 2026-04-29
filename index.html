@@ -20,8 +20,9 @@
 <meta name="twitter:description" content="Sauber, chemiefrei und ganz ohne Chemie. Für dich, deine Kinder und Haustiere.">
 <meta name="twitter:image"       content="https://vici-p.github.io/HYLA-Website/Branding/Bilder/Produkte/HylaTulpen.jpg">
 
-<!-- LCP: Hero-Bild vorladen -->
-<link rel="preload" as="image" href="Branding/Bilder/Produkte/HylaTulpen.webp" type="image/webp" fetchpriority="high">
+<!-- LCP: Hero-Bild vorladen – mobil kleines, Desktop großes Bild -->
+<link rel="preload" as="image" href="Branding/Bilder/Produkte/HylaTulpen-mobile.webp" type="image/webp" media="(max-width: 767px)" fetchpriority="high">
+<link rel="preload" as="image" href="Branding/Bilder/Produkte/HylaTulpen.webp" type="image/webp" media="(min-width: 768px)" fetchpriority="high">
 
 <!-- Fonts: lokal gehostet – keine Verbindung zu Google-Servern -->
 <link rel="preload" as="style" href="css/fonts.css" onload="this.onload=null;this.rel='stylesheet'">
@@ -674,6 +675,7 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
   #nav .nav-links { position: fixed; inset: 0; flex-direction: column; align-items: center; justify-content: center; gap: 40px; background: var(--cream); opacity: 0; pointer-events: none; transition: opacity .35s var(--ease-out); z-index: 999; }
   #nav .nav-links.open { opacity: 1; pointer-events: auto; }
   #nav .nav-links a { font-size: 22px; letter-spacing: .08em; }
+  #hero-canvas, #sol-water { display: none; }
   #nav, #nav.scrolled { padding: 16px 20px; }
   .hero-content { padding: 0 20px; max-width: 100%; left: 0 !important; }
   .hero-scroll { display: none; }
@@ -766,6 +768,7 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
 <!-- HERO -->
 <section id="hero">
   <picture>
+    <source srcset="Branding/Bilder/Produkte/HylaTulpen-mobile.webp" type="image/webp" media="(max-width: 767px)">
     <source srcset="Branding/Bilder/Produkte/HylaTulpen.webp" type="image/webp">
     <img src="Branding/Bilder/Produkte/HylaTulpen.jpg" alt="" class="hero-bg" fetchpriority="high" decoding="async" width="1920" height="1280" loading="eager">
   </picture>
