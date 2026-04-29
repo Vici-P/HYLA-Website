@@ -10,9 +10,9 @@
 <meta property="og:url" content="https://vici-p.github.io/HYLA-Website/hyla-steamer.html">
 <meta property="og:title" content="HYLA STEAMER – Trockendampfreiniger | dein frosch">
 <meta property="og:description" content="180 °C Trockendampf. Keine Chemie. Für nahezu alle Oberflächen.">
-<meta property="og:image" content="https://vici-p.github.io/HYLA-Website/Branding/Bilder/Produkte/Steamer - 1 (1).png">
+<meta property="og:image" content="https://vici-p.github.io/HYLA-Website/Branding/Bilder/Produkte/Steamer.webp">
 
-<link rel="preload" as="image" href="Branding/Bilder/Produkte/Steamer - 1 (1).png" fetchpriority="high">
+<link rel="preload" as="image" href="Branding/Bilder/Produkte/SteamerHero.webp" fetchpriority="high">
 <link rel="preload" as="style" href="css/fonts.css" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="css/fonts.css"></noscript>
 
@@ -83,8 +83,8 @@ a    { text-decoration: none; color: inherit; }
   line-height: 1.75; max-width: 420px; margin-bottom: 44px;
 }
 .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-.prod-hero-img { overflow: hidden; display: flex; align-items: center; justify-content: center; background: rgba(90,130,161,.06); padding: 40px; }
-.prod-hero-img img { width: 100%; max-width: 480px; height: auto; object-fit: contain; }
+.prod-hero-img { overflow: hidden; display: flex; align-items: center; justify-content: center; background: rgba(90,130,161,.06); padding: 16px; }
+.prod-hero-img img { width: 100%; max-width: 620px; height: auto; object-fit: contain; }
 
 /* FEATURES */
 .features-section { padding: 110px 64px; background: var(--sage-deep); }
@@ -208,11 +208,36 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
 .foot-socials a { width: 37px; height: 37px; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.45); transition: border-color .3s, color .3s; }
 .foot-socials a:hover { border-color: var(--sage); color: var(--sage); }
 
+/* TECHNIK */
+.tech-section { padding: 110px 64px; background: var(--cream); }
+.tech-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  max-width: 1060px; margin: 0 auto;
+}
+.tech-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 16px; padding: 32px;
+}
+.tech-card-title {
+  font-family: var(--fh); font-size: 18px; font-weight: 400;
+  color: var(--text); margin-bottom: 16px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.tech-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.tech-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13.5px; color: var(--muted); line-height: 1.5;
+}
+.tech-list li::before {
+  content: ''; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--sage-mid); flex-shrink: 0; margin-top: 6px;
+}
+
 /* RESPONSIVE */
 @media (max-width: 1100px) {
   #nav, #nav.scrolled { padding-left: 40px; padding-right: 40px; }
   .prod-hero-content { padding: 80px 60px 80px 40px; }
-  .features-section, .how-section, .specs-section, .page-cta { padding-left: 40px; padding-right: 40px; }
+  .features-section, .tech-section, .how-section, .specs-section, .page-cta { padding-left: 40px; padding-right: 40px; }
   .apps-content { padding: 72px 60px; }
   footer { padding: 80px 40px 44px; }
   .foot-top { gap: 44px; }
@@ -223,8 +248,9 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
   .prod-hero { grid-template-columns: 1fr; min-height: auto; padding-top: 80px; }
   .prod-hero-img { height: 300px; order: -1; padding: 24px; }
   .prod-hero-content { padding: 40px 20px 56px; }
-  .features-section, .how-section, .specs-section, .page-cta { padding: 72px 20px; }
+  .features-section, .tech-section, .how-section, .specs-section, .page-cta { padding: 72px 20px; }
   .features-grid { grid-template-columns: 1fr; }
+  .tech-grid { grid-template-columns: 1fr; }
   .apps-section { grid-template-columns: 1fr; }
   .apps-img { height: 260px; }
   .apps-content { padding: 56px 20px; }
@@ -238,7 +264,7 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
 }
 @media (max-width: 480px) {
   .prod-hero-content { padding: 32px 16px 48px; }
-  .features-section, .how-section, .specs-section, .page-cta { padding-left: 16px; padding-right: 16px; }
+  .features-section, .tech-section, .how-section, .specs-section, .page-cta { padding-left: 16px; padding-right: 16px; }
   .apps-content { padding: 48px 16px; }
   footer { padding: 48px 16px 32px; }
   .specs-table td { padding: 12px 10px; font-size: 13.5px; }
@@ -281,14 +307,14 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
     </div>
   </div>
   <div class="prod-hero-img">
-    <img src="Branding/Bilder/Produkte/Steamer - 1 (1).png" alt="HYLA STEAMER Trockendampfreiniger" width="700" height="900">
+    <img src="Branding/Bilder/Produkte/SteamerHero.webp" alt="HYLA STEAMER Trockendampfreiniger" width="700" height="900">
   </div>
 </section>
 
 <!-- FEATURES -->
 <section class="features-section">
   <div class="s-eye" style="text-align:center">Was ihn auszeichnet</div>
-  <h2 class="s-title" style="text-align:center;margin-bottom:64px">4 Gründe für den <em>STEAMER</em></h2>
+  <h2 class="s-title" style="text-align:center;margin-bottom:64px">6 Gründe für den <em>STEAMER</em></h2>
   <div class="features-grid">
 
     <div class="feat-card">
@@ -296,8 +322,8 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
         <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
       </div>
       <div>
-        <div class="feat-name">Reinigung ohne Chemie</div>
-        <p class="feat-desc">Der STEAMER arbeitet ausschließlich mit heißem Trockendampf. Keine Reinigungsmittel, keine Rückstände. Nur hygienische Sauberkeit.</p>
+        <div class="feat-name">100 % chemiefrei</div>
+        <p class="feat-desc">Reinigung nur mit heißem Trockendampf – ohne Reinigungsmittel, ohne Chemikalienreste. Sicher für Mensch, Tier und Oberfläche.</p>
       </div>
     </div>
 
@@ -306,8 +332,8 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
         <svg viewBox="0 0 24 24"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
       </div>
       <div>
-        <div class="feat-name">Hygienische Tiefenreinigung</div>
-        <p class="feat-desc">180 °C Dampftemperatur lösen Schmutzpartikel und reduzieren Keime sowie Bakterien effektiv. Für wirklich saubere Oberflächen.</p>
+        <div class="feat-name">Bis 180 °C Dampftemperatur</div>
+        <p class="feat-desc">Hohe Temperatur und bis zu 8 bar Druck lösen Fett, Öl und hartnäckigen Schmutz – ohne Schrubben, ohne Chemie.</p>
       </div>
     </div>
 
@@ -316,8 +342,8 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
         <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
       </div>
       <div>
-        <div class="feat-name">Schnell einsatzbereit</div>
-        <p class="feat-desc">Kurze Aufheizzeit, einfache Bedienung, starke Leistung. Der STEAMER ist schnell einsatzbereit und liefert sofort sichtbare Ergebnisse.</p>
+        <div class="feat-name">Extrem trockener Dampf</div>
+        <p class="feat-desc">Nur ca. 3 % Restfeuchte – kein Durchnässen, kein Schlieren, sofort nutzbare Oberflächen. Echter Trockendampf, kein nasser Dunst.</p>
       </div>
     </div>
 
@@ -327,7 +353,27 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
       </div>
       <div>
         <div class="feat-name">Vielseitig einsetzbar</div>
-        <p class="feat-desc">Ein Gerät für nahezu alle Reinigungsaufgaben im Haushalt und Betrieb. Die Dampfstärke ist individuell anpassbar.</p>
+        <p class="feat-desc">Böden, Küche, Bad, Polster, Fenster, Fahrzeuge, gewerbliche Hygiene – ein Gerät für nahezu alle Reinigungsaufgaben.</p>
+      </div>
+    </div>
+
+    <div class="feat-card">
+      <div class="feat-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div>
+        <div class="feat-name">Edelstahlkonstruktion</div>
+        <p class="feat-desc">Gehäuse und Kessel aus AISI 304 Edelstahl – robust, langlebig und industriefähig. Kein Plastik, keine Kompromisse.</p>
+      </div>
+    </div>
+
+    <div class="feat-card">
+      <div class="feat-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-1-5h2v2h-2v-2zm0-8h2v6h-2V7z"/></svg>
+      </div>
+      <div>
+        <div class="feat-name">Wartungsarm & zuverlässig</div>
+        <p class="feat-desc">Keine empfindliche Elektronik, keine Kühlsysteme. Einfache Konstruktion mit automatischer Kesselreinigung für lange Lebensdauer.</p>
       </div>
     </div>
 
@@ -337,7 +383,7 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
 <!-- APPLICATIONS -->
 <section class="apps-section">
   <div class="apps-img">
-    <img src="Branding/Bilder/Produkte/HYLABoden.jpg" alt="HYLA STEAMER Bodenreinigung" width="800" height="1000" loading="lazy">
+    <img src="Branding/Bilder/Produkte/Steamer2.webp" alt="HYLA STEAMER Trockendampfreiniger im Einsatz" width="700" height="900" loading="lazy">
   </div>
   <div class="apps-content">
     <div class="s-eye">Einsatzbereiche</div>
@@ -351,6 +397,78 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
       <li>Auto-Innenraum und Felgen</li>
       <li>Gartenmöbel und Außenbereiche</li>
     </ul>
+  </div>
+</section>
+
+<!-- TECHNIK -->
+<section class="tech-section">
+  <div class="s-eye" style="text-align:center">Profi-Ausstattung</div>
+  <h2 class="s-title" style="text-align:center;margin-bottom:64px">Technik, die den<br><em>Unterschied macht</em></h2>
+  <div class="tech-grid">
+
+    <div class="tech-card">
+      <div class="tech-card-title">Dampf &amp; Leistung</div>
+      <ul class="tech-list">
+        <li>Restfeuchte: ca. 3 % – echter Trockendampf</li>
+        <li>Dampfausstoß: 110 g/min (6,6 kg/h)</li>
+        <li>Dampftemperatur: bis 180 °C</li>
+        <li>Arbeitsdruck: bis 8 bar</li>
+        <li>Heizleistung: 2.000 Watt</li>
+      </ul>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-card-title">Kessel &amp; Tanksystem</div>
+      <ul class="tech-list">
+        <li>2-Kessel-Technologie (Heizkessel + Vorratstank)</li>
+        <li>Heizkesselvolumen: 2,2 Liter</li>
+        <li>Vorratstank: ca. 2,1 Liter</li>
+        <li>Kontinuierlicher Betrieb möglich</li>
+        <li>Nachfüllen ohne Druckverlust</li>
+      </ul>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-card-title">Material &amp; Verarbeitung</div>
+      <ul class="tech-list">
+        <li>Gehäuse: Edelstahl AISI 304 (INOX)</li>
+        <li>Kessel: 100 % AISI 304, 2 mm Wandstärke</li>
+        <li>Edelstahlventile</li>
+        <li>Keine Kunststoffverkleidungen</li>
+        <li>Robuste Industrieausführung</li>
+      </ul>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-card-title">Technik &amp; Steuerung</div>
+      <ul class="tech-list">
+        <li>Dreistufige Dampfregelung</li>
+        <li>Keine empfindliche Elektronik</li>
+        <li>Keine Kühl- oder Lüftungssysteme</li>
+        <li>Patentierte Technik</li>
+      </ul>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-card-title">Qualität &amp; Herkunft</div>
+      <ul class="tech-list">
+        <li>Industrieherkunft, keine Konsumgeräte-Technik</li>
+        <li>Profi-Qualität für zuverlässigen Dauereinsatz</li>
+        <li>Ausgelegt für Volllast über lange Zeit</li>
+        <li>Erfahrungsgemäß zuverlässigster seiner Klasse</li>
+      </ul>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-card-title">Hygiene &amp; Umwelt</div>
+      <ul class="tech-list">
+        <li>100 % chemiefreie Reinigung</li>
+        <li>Rückstandsfreie Reinigung</li>
+        <li>Reduzierter Wasserverbrauch</li>
+        <li>Weniger Plastik durch Verzicht auf Reinigungsmittel</li>
+      </ul>
+    </div>
+
   </div>
 </section>
 
@@ -387,13 +505,18 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
     <tr><td>Max. Gesamtleistung</td><td>2.850 W</td></tr>
     <tr><td>Max. Kesselleistung</td><td>2.000 W</td></tr>
     <tr><td>Max. Bügeleisenleistung</td><td>850 W</td></tr>
+    <tr><td>Dampftemperatur</td><td>bis 180 °C</td></tr>
+    <tr><td>Arbeitsdruck</td><td>bis 8 bar</td></tr>
+    <tr><td>Dampfausstoß</td><td>110 g/min (6,6 kg/h)</td></tr>
+    <tr><td>Restfeuchte</td><td>ca. 3 %</td></tr>
+    <tr><td>Dampfregelung</td><td>3-stufig</td></tr>
     <tr><td>Kesselvolumen</td><td>2,2 Liter</td></tr>
-    <tr><td>Nachfülltank</td><td>2 Liter</td></tr>
+    <tr><td>Vorratstank</td><td>ca. 2,1 Liter</td></tr>
     <tr><td>Max. Druck</td><td>8 bar</td></tr>
-    <tr><td>Gewicht</td><td>6,5 kg</td></tr>
-    <tr><td>Dampfsteuerung</td><td>Elektronisch</td></tr>
-    <tr><td>Abmessungen</td><td>410 × 297 × 250 mm</td></tr>
     <tr><td>Gehäuse</td><td>100 % AISI 304 INOX Edelstahl</td></tr>
+    <tr><td>Kessel-Wandstärke</td><td>2 mm AISI 304</td></tr>
+    <tr><td>Gewicht</td><td>6,5 kg</td></tr>
+    <tr><td>Abmessungen</td><td>410 × 297 × 250 mm</td></tr>
   </table>
 </section>
 
