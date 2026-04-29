@@ -166,14 +166,17 @@ a    { text-decoration: none; color: inherit; }
 .pkg-cta-fill { background: var(--sage-deep); color: var(--white); border: none; }
 
 /* MUST HAVES */
-.musthave-section { padding: 110px 64px; background: var(--cream-mid); }
-.musthave-lead { max-width: 480px; margin-bottom: 56px; }
+.musthave-section { padding: 110px 64px; background: var(--cream-mid); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.musthave-content {}
+.musthave-lead { margin-bottom: 56px; }
 .musthave-lead h2 {
   font-family: var(--fh); font-size: clamp(28px, 3.5vw, 46px);
   font-weight: 300; color: var(--text); margin-bottom: 12px;
 }
 .musthave-lead p { font-size: 15.5px; color: var(--muted); }
-.musthave-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; max-width: 820px; }
+.musthave-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.musthave-img { overflow: hidden; border-radius: 24px; }
+.musthave-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 24px; display: block; }
 .mh-card {
   background: var(--white); border-radius: 18px; padding: 30px 34px;
   display: flex; gap: 18px; align-items: flex-start; transition: box-shadow .3s;
@@ -242,6 +245,8 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
   .packages-section, .musthave-section, .page-cta { padding: 72px 20px; }
   .intro-band { padding: 48px 20px; }
   .packages-grid { grid-template-columns: 1fr; }
+  .musthave-section { grid-template-columns: 1fr; }
+  .musthave-img { display: none; }
   .musthave-grid { grid-template-columns: 1fr; max-width: 100%; }
   .cta-btns { flex-direction: column; align-items: center; }
   .btn-lg { width: 100%; max-width: 340px; }
@@ -364,6 +369,7 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
 
 <!-- MUST HAVES -->
 <section class="musthave-section">
+  <div class="musthave-content">
   <div class="musthave-lead">
     <div class="s-eye" style="text-align:left">Empfehlungen</div>
     <h2>Must Haves</h2>
@@ -406,6 +412,10 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
         <div class="mh-desc">Einfache und effektive Reinigung der Abflüsse.</div>
       </div>
     </div>
+  </div>
+  </div>
+  <div class="musthave-img">
+    <img src="Branding/Bilder/Produkte/musthaves.webp" alt="HYLA EST Must Haves Zubehör" width="900" height="1248" loading="lazy">
   </div>
 </section>
 
