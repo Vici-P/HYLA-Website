@@ -1,8 +1,5 @@
 'use strict';
 
-/* Mobile-Erkennung einmalig – alle Desktop-only Features davon abhängig */
-const IS_MOBILE = window.innerWidth < 768;
-
 /* ============================================================
    GSAP PLUGIN REGISTRATION
    ============================================================ */
@@ -21,51 +18,49 @@ gsap.ticker.lagSmoothing(0);
 lenis.on('scroll', ScrollTrigger.update);
 
 /* ============================================================
-   CUSTOM CURSOR + MAGNETIC BUTTONS  (desktop only)
+   CUSTOM CURSOR
    ============================================================ */
-let cDot = null, cRing = null;
+const cDot  = document.getElementById('c-dot');
+const cRing = document.getElementById('c-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
 
-if (!IS_MOBILE) {
-  cDot  = document.getElementById('c-dot');
-  cRing = document.getElementById('c-ring');
-  let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  gsap.to(cDot, { x: mx, y: my, duration: .08, overwrite: true });
+});
 
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    gsap.to(cDot, { x: mx, y: my, duration: .08, overwrite: true });
-  });
+(function ringLoop() {
+  rx += (mx - rx) * .11;
+  ry += (my - ry) * .11;
+  gsap.set(cRing, { x: rx, y: ry });
+  requestAnimationFrame(ringLoop);
+})();
 
-  (function ringLoop() {
-    rx += (mx - rx) * .11;
-    ry += (my - ry) * .11;
-    gsap.set(cRing, { x: rx, y: ry });
-    requestAnimationFrame(ringLoop);
-  })();
-
-  document.querySelectorAll('a, button, .prod-card, .testi-card, .btn-primary, .btn-lg, .nav-cta').forEach(el => {
-    el.addEventListener('mouseenter', () => cRing.classList.add('hover'));
-    el.addEventListener('mouseleave', () => cRing.classList.remove('hover'));
-  });
-
-  document.querySelectorAll('.magnetic').forEach(btn => {
-    btn.addEventListener('mousemove', e => {
-      const r  = btn.getBoundingClientRect();
-      const dx = (e.clientX - r.left - r.width  / 2) * .28;
-      const dy = (e.clientY - r.top  - r.height / 2) * .28;
-      gsap.to(btn, { x: dx, y: dy, duration: .35, ease: 'power3.out' });
-    });
-    btn.addEventListener('mouseleave', () => {
-      gsap.to(btn, { x: 0, y: 0, duration: .55, ease: 'elastic.out(1,.5)' });
-    });
-  });
-}
+document.querySelectorAll('a, button, .prod-card, .testi-card, .btn-primary, .btn-lg, .nav-cta').forEach(el => {
+  el.addEventListener('mouseenter', () => cRing.classList.add('hover'));
+  el.addEventListener('mouseleave', () => cRing.classList.remove('hover'));
+});
 
 /* ============================================================
-   THREE.JS HERO PARTICLES  (desktop only – spart 601 KB auf Mobile)
+   MAGNETIC BUTTONS
+   ============================================================ */
+document.querySelectorAll('.magnetic').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r  = btn.getBoundingClientRect();
+    const dx = (e.clientX - r.left - r.width  / 2) * .28;
+    const dy = (e.clientY - r.top  - r.height / 2) * .28;
+    gsap.to(btn, { x: dx, y: dy, duration: .35, ease: 'power3.out' });
+  });
+  btn.addEventListener('mouseleave', () => {
+    gsap.to(btn, { x: 0, y: 0, duration: .55, ease: 'elastic.out(1,.5)' });
+  });
+});
+
+/* ============================================================
+   THREE.JS HERO PARTICLES
    ============================================================ */
 function initThree() {
   const canvas   = document.getElementById('hero-canvas');
-  if (!canvas) return;
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -145,28 +140,19 @@ function initThree() {
   }, { passive: true });
 }
 
-if (!IS_MOBILE) {
-  window.addEventListener('load', () => {
-    const s = document.createElement('script');
-    s.src = 'js/three.min.js';
-    s.onload = initThree;
-    document.head.appendChild(s);
-  }, { once: true, passive: true });
-}
+/* Three.js nach LCP dynamisch laden – blockiert nicht den ersten Paint */
+window.addEventListener('load', () => {
+  const s = document.createElement('script');
+  s.src = 'js/three.min.js';
+  s.onload = initThree;
+  document.head.appendChild(s);
+}, { once: true, passive: true });
 
 /* ============================================================
    PRELOADER
    ============================================================ */
 window.addEventListener('load', () => {
-  const pl = document.getElementById('preloader');
-
-  /* Mobile: Preloader sofort ausblenden – LCP blockiert sonst 2-3 Sek. */
-  if (IS_MOBILE) {
-    pl.style.display = 'none';
-    playHero();
-    return;
-  }
-
+  const pl   = document.getElementById('preloader');
   const logo = pl.querySelector('.pl-logo');
   const tag  = pl.querySelector('.pl-tagline span');
   const bw   = pl.querySelector('.pl-bar-wrap');
@@ -191,14 +177,6 @@ window.addEventListener('load', () => {
    HERO ENTRANCE
    ============================================================ */
 function playHero() {
-  if (IS_MOBILE) {
-    /* Sofort sichtbar – keine Animations-Verzögerung auf Mobile */
-    gsap.set(
-      ['.hero-eyebrow span', '.hero-title .lni', '.hero-sub', '.hero-ctas', '.hero-scroll'],
-      { clearProps: 'all' }
-    );
-    return;
-  }
   gsap.timeline()
     .to('.hero-eyebrow span', { y: 0, duration: .7,  ease: 'power3.out' })
     .to('.hero-title .lni',   { y: 0, duration: .95, stagger: .11, ease: 'power4.out' }, '-=.35')
@@ -324,88 +302,86 @@ document.querySelectorAll('.testi-card').forEach((card, i) => {
 });
 
 /* ============================================================
-   PARALLAX  (desktop only – verursacht Paint-Kosten auf Mobile)
+   PARALLAX – PAIN IMAGE
    ============================================================ */
-if (!IS_MOBILE) {
-  gsap.to('#px-pain', {
-    yPercent: -14, ease: 'none',
-    scrollTrigger: {
-      trigger: '#pain', start: 'top bottom', end: 'bottom top', scrub: true,
-    }
-  });
-
-  gsap.to('#px-about', {
-    yPercent: -11, ease: 'none',
-    scrollTrigger: {
-      trigger: '#about', start: 'top bottom', end: 'bottom top', scrub: true,
-    }
-  });
-}
+gsap.to('#px-pain', {
+  yPercent: -14, ease: 'none',
+  scrollTrigger: {
+    trigger: '#pain', start: 'top bottom', end: 'bottom top', scrub: true,
+  }
+});
 
 /* ============================================================
-   WATER RIPPLE  (desktop only)
+   PARALLAX – ABOUT IMAGE
    ============================================================ */
-if (!IS_MOBILE) {
-  (function initWaterRipple() {
-    const canvas = document.getElementById('sol-water');
-    if (!canvas) return;
-    const ctx    = canvas.getContext('2d');
+gsap.to('#px-about', {
+  yPercent: -11, ease: 'none',
+  scrollTrigger: {
+    trigger: '#about', start: 'top bottom', end: 'bottom top', scrub: true,
+  }
+});
 
-    function resize() {
-      canvas.width  = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize, { passive: true });
+/* ============================================================
+   WATER RIPPLE – SOLUTION SECTION
+   ============================================================ */
+(function initWaterRipple() {
+  const canvas = document.getElementById('sol-water');
+  const ctx    = canvas.getContext('2d');
 
-    const ripples = [];
-    const colors  = [
-      'rgba(90,130,161,',
-      'rgba(170,194,180,',
-      'rgba(128,157,178,',
-      'rgba(90,130,161,',
-    ];
+  function resize() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
 
-    function spawn() {
-      const pad = 60;
-      ripples.push({
-        x:     pad + Math.random() * (canvas.width  - pad * 2),
-        y:     pad + Math.random() * (canvas.height - pad * 2),
-        r:     0,
-        maxR:  70 + Math.random() * 90,
-        alpha: 0.22 + Math.random() * .12,
-        speed: 0.55 + Math.random() * .6,
-        color: colors[Math.floor(Math.random() * colors.length)],
-      });
-    }
+  const ripples = [];
+  const colors  = [
+    'rgba(90,130,161,',
+    'rgba(170,194,180,',
+    'rgba(128,157,178,',
+    'rgba(90,130,161,',
+  ];
 
-    for (let i = 0; i < 5; i++) spawn();
-    setInterval(spawn, 700);
+  function spawn() {
+    const pad = 60;
+    ripples.push({
+      x:     pad + Math.random() * (canvas.width  - pad * 2),
+      y:     pad + Math.random() * (canvas.height - pad * 2),
+      r:     0,
+      maxR:  70 + Math.random() * 90,
+      alpha: 0.22 + Math.random() * .12,
+      speed: 0.55 + Math.random() * .6,
+      color: colors[Math.floor(Math.random() * colors.length)],
+    });
+  }
 
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = ripples.length - 1; i >= 0; i--) {
-        const rp = ripples[i];
+  for (let i = 0; i < 5; i++) spawn();
+  setInterval(spawn, 700);
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = ripples.length - 1; i >= 0; i--) {
+      const rp = ripples[i];
+      ctx.beginPath();
+      ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2);
+      ctx.strokeStyle = rp.color + rp.alpha.toFixed(3) + ')';
+      ctx.lineWidth   = 1.4;
+      ctx.stroke();
+      if (rp.r < 20) {
         ctx.beginPath();
-        ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2);
-        ctx.strokeStyle = rp.color + rp.alpha.toFixed(3) + ')';
-        ctx.lineWidth   = 1.4;
-        ctx.stroke();
-        if (rp.r < 20) {
-          ctx.beginPath();
-          ctx.arc(rp.x, rp.y, rp.r * .4, 0, Math.PI * 2);
-          ctx.fillStyle = rp.color + (rp.alpha * .15).toFixed(3) + ')';
-          ctx.fill();
-        }
-        rp.r     += rp.speed;
-        rp.alpha -= rp.alpha / (rp.maxR / rp.speed);
-        if (rp.r >= rp.maxR) ripples.splice(i, 1);
+        ctx.arc(rp.x, rp.y, rp.r * .4, 0, Math.PI * 2);
+        ctx.fillStyle = rp.color + (rp.alpha * .15).toFixed(3) + ')';
+        ctx.fill();
       }
-      requestAnimationFrame(draw);
+      rp.r     += rp.speed;
+      rp.alpha -= rp.alpha / (rp.maxR / rp.speed);
+      if (rp.r >= rp.maxR) ripples.splice(i, 1);
     }
-    draw();
-  })();
-}
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
 
 /* ============================================================
    CONTACT FORM – MAILTO
@@ -449,8 +425,6 @@ if (!IS_MOBILE) {
     btn.classList.toggle('visible', scroll > 400);
   });
   btn.addEventListener('click', () => lenis.scrollTo(0, { duration: 1.2 }));
-  if (cRing) {
-    btn.addEventListener('mouseenter', () => cRing.classList.add('hover'));
-    btn.addEventListener('mouseleave', () => cRing.classList.remove('hover'));
-  }
+  btn.addEventListener('mouseenter', () => cRing.classList.add('hover'));
+  btn.addEventListener('mouseleave', () => cRing.classList.remove('hover'));
 })();
