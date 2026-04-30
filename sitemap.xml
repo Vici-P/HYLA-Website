@@ -1,20 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://vici-p.github.io/HYLA-Website/</loc>
-    <lastmod>2026-04-24</lastmod>
+    <loc>https://deinfrosch.at/</loc>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://vici-p.github.io/HYLA-Website/impressum.html</loc>
-    <lastmod>2026-04-26</lastmod>
+    <loc>https://deinfrosch.at/hyla-est.html</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://deinfrosch.at/hyla-steamer.html</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://deinfrosch.at/blog.html</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://deinfrosch.at/blog/hyla-steamer-dampfreiniger.html</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deinfrosch.at/blog/hyla-abendroutine.html</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deinfrosch.at/blog/hyla-kaufen.html</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deinfrosch.at/blog/hyla-braunau-innviertel.html</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deinfrosch.at/blog/hyla-beratung-vorfuehrung.html</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deinfrosch.at/impressum.html</loc>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://vici-p.github.io/HYLA-Website/datenschutz.html</loc>
-    <lastmod>2026-04-26</lastmod>
+    <loc>https://deinfrosch.at/datenschutz.html</loc>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
