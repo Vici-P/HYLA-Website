@@ -6,6 +6,13 @@
 gsap.registerPlugin(ScrollTrigger);
 
 /* ============================================================
+   DEVICE / MOTION DETECTION
+   ============================================================ */
+const isMobile = window.matchMedia('(max-width: 768px)').matches;
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const skipHeavy = isMobile || prefersReducedMotion;
+
+/* ============================================================
    LENIS SMOOTH SCROLL
    ============================================================ */
 const lenis = new Lenis({
@@ -140,8 +147,9 @@ function initThree() {
   }, { passive: true });
 }
 
-/* Three.js nach LCP dynamisch laden – blockiert nicht den ersten Paint */
+/* Three.js nach LCP dynamisch laden – nur auf Desktop */
 window.addEventListener('load', () => {
+  if (skipHeavy) return;
   const s = document.createElement('script');
   s.src = 'js/three.min.js';
   s.onload = initThree;
@@ -152,7 +160,14 @@ window.addEventListener('load', () => {
    PRELOADER
    ============================================================ */
 window.addEventListener('load', () => {
-  const pl   = document.getElementById('preloader');
+  const pl = document.getElementById('preloader');
+
+  if (skipHeavy) {
+    pl.style.display = 'none';
+    playHero();
+    return;
+  }
+
   const logo = pl.querySelector('.pl-logo');
   const tag  = pl.querySelector('.pl-tagline span');
   const bw   = pl.querySelector('.pl-bar-wrap');
@@ -161,16 +176,16 @@ window.addEventListener('load', () => {
   gsap.timeline({
     onComplete() {
       gsap.to(pl, {
-        yPercent: -100, duration: 1, ease: 'power3.inOut',
+        yPercent: -100, duration: .65, ease: 'power3.inOut',
         onComplete() { pl.style.display = 'none'; playHero(); }
       });
     }
   })
-  .to(logo, { opacity: 1, scale: 1, duration: .8, ease: 'back.out(1.6)' })
-  .to(tag,  { y: 0,       duration: .55, ease: 'power3.out' }, '-=.25')
-  .to(bw,   { opacity: 1, duration: .3  }, '-=.1')
-  .to(bar,  { width: '100%', duration: .9, ease: 'power2.inOut' })
-  .to({},   { duration: .25 });
+  .to(logo, { opacity: 1, scale: 1, duration: .55, ease: 'back.out(1.6)' })
+  .to(tag,  { y: 0,       duration: .4,  ease: 'power3.out' }, '-=.2')
+  .to(bw,   { opacity: 1, duration: .25 }, '-=.1')
+  .to(bar,  { width: '100%', duration: .6, ease: 'power2.inOut' })
+  .to({},   { duration: .1 });
 }, { passive: true });
 
 /* ============================================================
@@ -302,29 +317,29 @@ document.querySelectorAll('.testi-card').forEach((card, i) => {
 });
 
 /* ============================================================
-   PARALLAX – PAIN IMAGE
+   PARALLAX – nur Desktop (zu CPU-intensiv auf Mobile)
    ============================================================ */
-gsap.to('#px-pain', {
-  yPercent: -14, ease: 'none',
-  scrollTrigger: {
-    trigger: '#pain', start: 'top bottom', end: 'bottom top', scrub: true,
-  }
-});
+if (!skipHeavy) {
+  gsap.to('#px-pain', {
+    yPercent: -14, ease: 'none',
+    scrollTrigger: {
+      trigger: '#pain', start: 'top bottom', end: 'bottom top', scrub: true,
+    }
+  });
+
+  gsap.to('#px-about', {
+    yPercent: -11, ease: 'none',
+    scrollTrigger: {
+      trigger: '#about', start: 'top bottom', end: 'bottom top', scrub: true,
+    }
+  });
+}
 
 /* ============================================================
-   PARALLAX – ABOUT IMAGE
+   WATER RIPPLE – SOLUTION SECTION (nur Desktop)
    ============================================================ */
-gsap.to('#px-about', {
-  yPercent: -11, ease: 'none',
-  scrollTrigger: {
-    trigger: '#about', start: 'top bottom', end: 'bottom top', scrub: true,
-  }
-});
-
-/* ============================================================
-   WATER RIPPLE – SOLUTION SECTION
-   ============================================================ */
-(function initWaterRipple() {
+if (skipHeavy) { document.getElementById('sol-water').style.display = 'none'; }
+(!skipHeavy) && (function initWaterRipple() {
   const canvas = document.getElementById('sol-water');
   const ctx    = canvas.getContext('2d');
 
