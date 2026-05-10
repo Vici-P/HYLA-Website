@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vici-p.github.io/HYLA-Website/sitemap.xml
+Sitemap: https://deinfrosch.at/sitemap.xml
