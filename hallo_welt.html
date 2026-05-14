@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Hallo Welt</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #1a1a2e;
+    }
+
+    .text {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 4rem;
+      font-weight: bold;
+      color: #e0e0e0;
+      animation: float 3s ease-in-out infinite;
+      cursor: default;
+      transition: color 0.4s ease, text-shadow 0.4s ease;
+    }
+
+    .text:hover {
+      color: #ff6b6b;
+      text-shadow:
+        0 0 10px #ff6b6b,
+        0 0 30px #ff6b6b,
+        0 0 60px #ff4444;
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(0px); }
+      50%  { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
+</head>
+<body>
+  <span class="text">Hallo Welt</span>
+</body>
+</html>

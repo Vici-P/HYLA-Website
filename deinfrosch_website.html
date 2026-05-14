@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="dein frosch – HYLA Reinigungssysteme für gesundheitsbewusste Familien im Raum Braunau & Innviertel. Sauber, chemiefrei, ehrlich.">
+<title>dein frosch | Gesundheit · Wohlfühlen · Durchatmen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+
+/* ============================
+   RESET & TOKENS
+   ============================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --sage:       #aac2b4;
+  --sage-mid:   #7a9e8c;
+  --sage-deep:  #2c4158;
+  --blue:       #5a82a1;
+  --blue-light: #809db2;
+  --blue-pale:  #b4c4ce;
+  --mauve:      #af729e;
+  --cream:      #f5f2ee;
+  --cream-mid:  #ede9e3;
+  --cream-dark: #e5e0d8;
+  --white:      #fdfcfa;
+  --text:       #1c2b25;
+  --muted:      #5a6b62;
+  --border:     rgba(170,194,180,.25);
+  --glass:      rgba(255,255,255,.68);
+  --glass-b:    rgba(255,255,255,.85);
+  --ease-out:   cubic-bezier(.16,1,.3,1);
+  --ease-io:    cubic-bezier(.65,0,.35,1);
+  --fh: 'Cormorant Garamond', Georgia, serif;
+  --fb: 'DM Sans', system-ui, sans-serif;
+}
+
+html { font-size: 16px; }
+body { font-family: var(--fb); background: var(--cream); color: var(--text); overflow-x: hidden; cursor: none; }
+img  { max-width: 100%; height: auto; display: block; }
+a    { text-decoration: none; color: inherit; }
+
+/* ============================
+   CURSOR
+   ============================ */
+#c-dot {
+  position: fixed; width: 7px; height: 7px;
+  background: var(--sage-deep); border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+}
+#c-ring {
+  position: fixed; width: 38px; height: 38px;
+  border: 1.5px solid var(--sage-deep); border-radius: 50%;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: width .3s var(--ease-out), height .3s var(--ease-out),
+              background .3s, border-color .3s;
+}
+#c-ring.hover {
+  width: 64px; height: 64px;
+  background: rgba(170,194,180,.12);
+  border-color: var(--sage);
+}
+
+/* ============================
+   PRELOADER
+   ============================ */
+#preloader {
+  position: fixed; inset: 0; background: var(--cream);
+  z-index: 10000; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 0;
+}
+.pl-logo { width: 110px; height: 110px; opacity: 0; transform: scale(.65); }
+.pl-tagline {
+  font-family: var(--fb); font-size: 10.5px; letter-spacing: .38em;
+  text-transform: uppercase; color: var(--muted); margin-top: 22px;
+  overflow: hidden; height: 1.3em;
+}
+.pl-tagline span { display: block; transform: translateY(110%); }
+.pl-bar-wrap {
+  width: 110px; height: 1px; background: rgba(170,194,180,.35);
+  margin-top: 20px; overflow: hidden; opacity: 0;
+}
+.pl-bar { height: 100%; width: 0; background: var(--sage-deep); }
+
+/* ============================
+   NAVIGATION
+   ============================ */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 26px 64px; display: flex; align-items: center;
+  justify-content: space-between;
+  transition: background .45s, backdrop-filter .45s, padding .45s, border-color .45s;
+  border-bottom: 1px solid transparent;
+}
+#nav.scrolled {
+  background: rgba(245,242,238,.88); backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px); padding: 16px 64px;
+  border-color: var(--border);
+}
+.nav-logo { width: 52px; height: 52px; }
+.nav-links { list-style: none; display: flex; gap: 44px; }
+.nav-links a {
+  font-size: 12.5px; letter-spacing: .13em; text-transform: uppercase;
+  color: var(--text); position: relative; padding-bottom: 4px;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px; background: var(--sage-mid);
+  transition: width .4s var(--ease-out);
+}
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  font-size: 12px; letter-spacing: .15em; text-transform: uppercase;
+  padding: 11px 28px; border: 1.5px solid var(--sage-deep);
+  color: var(--sage-deep); border-radius: 100px; position: relative; overflow: hidden;
+}
+.nav-cta::before {
+  content: ''; position: absolute; inset: 0; background: var(--sage-deep);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .4s var(--ease-out); z-index: -1;
+}
+.nav-cta:hover { color: var(--white); }
+.nav-cta:hover::before { transform: scaleX(1); }
+
+/* ============================
+   HERO
+   ============================ */
+#hero {
+  position: relative; height: 100vh; min-height: 680px;
+  display: flex; align-items: center; overflow: hidden;
+  background: url('Branding/Bilder/Produkte/HylaTulpen.jpg') center/cover no-repeat;
+}
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(105deg,
+    rgba(245,242,238,.96) 0%,
+    rgba(245,242,238,.88) 30%,
+    rgba(245,242,238,.55) 58%,
+    rgba(245,242,238,.08) 100%
+  );
+}
+#hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; }
+
+.hero-content {
+  position: relative; z-index: 10; padding: 0 64px;
+  max-width: 820px;
+}
+.hero-eyebrow {
+  font-size: 11px; letter-spacing: .38em; text-transform: uppercase;
+  color: var(--sage-mid); margin-bottom: 28px;
+  overflow: hidden; height: 1.4em;
+}
+.hero-eyebrow span { display: block; transform: translateY(110%); }
+
+.hero-title {
+  font-family: var(--fh); font-size: clamp(52px,7.5vw,100px);
+  font-weight: 300; line-height: 1.03; color: var(--text); margin-bottom: 34px;
+}
+.hero-title .ln  { display: block; overflow: hidden; }
+.hero-title .lni { display: block; transform: translateY(112%); }
+.hero-title em   { font-style: italic; color: var(--sage-mid); }
+
+.hero-sub {
+  font-size: 17px; font-weight: 300; color: var(--muted); line-height: 1.7;
+  max-width: 430px; margin-bottom: 52px; opacity: 0; transform: translateY(22px);
+}
+.hero-ctas { display: flex; gap: 22px; align-items: center; opacity: 0; transform: translateY(22px); }
+
+.btn-primary {
+  display: inline-block; padding: 16px 42px; background: var(--sage-deep);
+  color: var(--white); border-radius: 100px; font-size: 12.5px; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase; position: relative; overflow: hidden;
+  transition: transform .3s var(--ease-out), box-shadow .3s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 44px rgba(45,74,62,.28); }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase;
+  font-weight: 500; color: var(--text);
+}
+.btn-ghost .arr {
+  width: 38px; height: 38px; border: 1.5px solid var(--sage);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  transition: transform .35s var(--ease-out), background .3s;
+}
+.btn-ghost:hover .arr { transform: translateX(5px); background: rgba(170,194,180,.15); }
+
+.hero-scroll {
+  position: absolute; bottom: 48px; left: 64px; z-index: 10;
+  display: flex; align-items: center; gap: 14px; opacity: 0;
+}
+.hero-scroll span {
+  font-size: 10px; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--muted); writing-mode: vertical-rl; transform: rotate(180deg);
+}
+.scroll-line {
+  width: 1px; height: 58px;
+  background: linear-gradient(to bottom, var(--sage-mid), transparent);
+  animation: sline 2.2s ease-in-out infinite;
+}
+@keyframes sline {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  49%  { transform: scaleY(1); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ============================
+   TRUST BAR
+   ============================ */
+.trust-bar {
+  background: var(--sage-deep); padding: 44px 64px;
+  display: flex; justify-content: center; align-items: center; gap: 72px;
+}
+.trust-item { text-align: center; opacity: 0; transform: translateY(28px); }
+.trust-num {
+  font-family: var(--fh); font-size: 52px; font-weight: 300;
+  color: var(--white); line-height: 1;
+}
+.trust-label { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.85); margin-top: 6px; }
+.trust-sep   { width: 1px; height: 56px; background: rgba(255,255,255,.12); }
+
+/* ============================
+   SECTION HELPERS
+   ============================ */
+.section { padding: 130px 64px; }
+.s-eye {
+  font-size: 11px; letter-spacing: .35em; text-transform: uppercase;
+  color: var(--sage-mid); margin-bottom: 18px; opacity: 0; transform: translateY(18px);
+}
+.s-title {
+  font-family: var(--fh); font-size: clamp(36px,4.8vw,64px);
+  font-weight: 300; line-height: 1.1; color: var(--text);
+  opacity: 0; transform: translateY(22px);
+}
+.s-title em { font-style: italic; color: var(--sage-mid); }
+
+/* ============================
+   PAIN
+   ============================ */
+#pain {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 88vh; overflow: hidden; padding: 0;
+}
+.pain-img-wrap { position: relative; overflow: hidden; }
+.pain-img-wrap img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); will-change: transform; }
+
+.pain-content {
+  background: var(--cream-mid); display: flex;
+  flex-direction: column; justify-content: center; padding: 110px 88px;
+}
+.pain-list { margin-top: 52px; display: flex; flex-direction: column; gap: 28px; }
+.pain-item {
+  display: flex; gap: 18px; align-items: flex-start;
+  opacity: 0; transform: translateX(28px);
+}
+.p-icon {
+  width: 46px; height: 46px; flex-shrink: 0; border-radius: 12px;
+  background: rgba(175,114,158,.1); display: flex;
+  align-items: center; justify-content: center; font-size: 22px;
+}
+.pain-item h4 { font-family: var(--fh); font-size: 21px; font-weight: 400; margin-bottom: 5px; }
+.pain-item p  { font-size: 14.5px; color: var(--muted); line-height: 1.65; }
+
+/* ============================
+   SOLUTION BRIDGE
+   ============================ */
+#solution {
+  background: linear-gradient(150deg, #edf6fb 0%, #e2f0f8 40%, #d8ecf6 100%);
+  text-align: center; position: relative; overflow: hidden;
+}
+#sol-water {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; opacity: .65;
+}
+.sol-inner { max-width: 880px; margin: 0 auto; position: relative; z-index: 1; }
+.sol-big {
+  font-family: var(--fh); font-size: clamp(26px,3.2vw,46px);
+  font-weight: 300; line-height: 1.45; color: var(--text);
+  margin-top: 36px; opacity: 0; transform: translateY(28px);
+}
+.sol-big strong { font-weight: 600; color: var(--sage-mid); }
+
+/* ============================
+   PRODUCTS
+   ============================ */
+#products { background: var(--cream); }
+.prod-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 68px; }
+.prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+
+.prod-card {
+  background: var(--white); border-radius: 24px; overflow: hidden;
+  opacity: 0; transform: translateY(42px);
+  transition: transform .45s var(--ease-out), box-shadow .45s;
+}
+.prod-card:hover { transform: translateY(-10px); box-shadow: 0 32px 80px rgba(45,74,62,.1); }
+
+.prod-img { height: 350px; overflow: hidden; position: relative; }
+.prod-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .65s var(--ease-out); }
+.prod-card:hover .prod-img img { transform: scale(1.06); }
+
+.prod-badge {
+  position: absolute; top: 22px; right: 22px;
+  background: var(--sage-deep); color: var(--white);
+  padding: 6px 17px; border-radius: 100px;
+  font-size: 10.5px; letter-spacing: .15em; text-transform: uppercase;
+}
+.prod-body { padding: 44px; }
+.prod-name { font-family: var(--fh); font-size: 34px; font-weight: 400; margin-bottom: 14px; }
+.prod-desc { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 30px; }
+.prod-feats { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 38px; }
+.prod-feats li { display: flex; align-items: center; gap: 11px; font-size: 14.5px; }
+.prod-feats li::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--sage); flex-shrink: 0;
+}
+.prod-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12.5px; font-weight: 500; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--sage-deep);
+  border-bottom: 1px solid var(--sage-mid); padding-bottom: 4px;
+  transition: gap .3s var(--ease-out);
+}
+.prod-link:hover { gap: 14px; }
+
+/* ============================
+   HOW IT WORKS
+   ============================ */
+#how { background: var(--sage-deep); color: var(--white); text-align: center; }
+#how .s-eye   { color: var(--sage); }
+#how .s-title { color: var(--white); }
+#how .s-title em { color: var(--sage); }
+
+.steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 88px; position: relative; }
+.steps::before {
+  content: ''; position: absolute; top: 42px;
+  left: calc(16.67% + 24px); right: calc(16.67% + 24px);
+  height: 1px; background: rgba(255,255,255,.2);
+}
+.step { padding: 44px; opacity: 0; transform: translateY(28px); }
+.step-n {
+  font-family: var(--fh); font-size: 60px; font-weight: 300;
+  color: var(--white); opacity: .35; line-height: 1; margin-bottom: 24px;
+}
+.step h3 { font-family: var(--fh); font-size: 25px; font-weight: 400; margin-bottom: 13px; }
+.step p  { font-size: 15px; color: rgba(255,255,255,.6); line-height: 1.7; }
+
+/* ============================
+   ABOUT
+   ============================ */
+#about { display: grid; grid-template-columns: 1fr 1fr; min-height: 82vh; overflow: hidden; padding: 0; }
+.about-content { display: flex; flex-direction: column; justify-content: center; padding: 110px 88px; }
+.about-quote {
+  font-family: var(--fh); font-size: clamp(20px,2.4vw,32px);
+  font-style: italic; font-weight: 300; line-height: 1.5; color: var(--text);
+  margin: 40px 0; padding-left: 30px; border-left: 2px solid var(--sage);
+  opacity: 0; transform: translateX(-22px);
+}
+.about-txt {
+  font-size: 15.5px; color: var(--muted); line-height: 1.85;
+  margin-bottom: 38px; opacity: 0; transform: translateY(18px);
+}
+.about-sig { font-family: var(--fh); font-size: 30px; font-style: italic; color: var(--sage-mid); opacity: 0; }
+.about-phone { margin-top: 36px; opacity: 0; transform: translateY(18px); }
+
+.about-img-wrap { position: relative; overflow: hidden; background: var(--cream-dark); }
+.about-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transform: scale(1.1); will-change: transform; }
+.about-badge {
+  position: absolute; bottom: 40px; left: 40px;
+  background: var(--glass); backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px); border: 1px solid var(--glass-b);
+  border-radius: 16px; padding: 20px 28px;
+}
+.about-badge strong { display: block; font-family: var(--fh); font-size: 21px; color: var(--text); }
+.about-badge span   { font-size: 12px; letter-spacing: .08em; color: var(--muted); }
+
+/* ============================
+   TESTIMONIALS
+   ============================ */
+#testimonials {
+  background: linear-gradient(135deg, #dce8e2 0%, var(--cream) 45%, #d5dfea 100%);
+  text-align: center;
+}
+.testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 26px; margin-top: 68px; }
+.testi-card {
+  background: var(--glass); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+  border: 1px solid var(--glass-b); border-radius: 22px; padding: 42px; text-align: left;
+  opacity: 0; transform: translateY(38px);
+  transition: transform .4s var(--ease-out), box-shadow .4s;
+}
+.testi-card:hover { transform: translateY(-7px); box-shadow: 0 22px 60px rgba(90,130,161,.14); }
+.testi-stars { color: var(--sage-mid); font-size: 17px; letter-spacing: 3px; margin-bottom: 22px; }
+.testi-text  { font-family: var(--fh); font-size: 19px; font-style: italic; font-weight: 300; line-height: 1.65; color: var(--text); margin-bottom: 26px; }
+.testi-author { display: flex; align-items: center; gap: 13px; }
+.testi-av {
+  width: 46px; height: 46px; border-radius: 50%; background: var(--sage);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--fh); font-size: 20px; color: var(--white); font-weight: 400; flex-shrink: 0;
+}
+.testi-info strong { display: block; font-size: 14px; font-weight: 500; }
+.testi-info span   { font-size: 12.5px; color: var(--muted); }
+
+/* ============================
+   CTA
+   ============================ */
+#cta { background: var(--cream-mid); text-align: center; }
+.cta-inner { max-width: 720px; margin: 0 auto; }
+.cta-title {
+  font-family: var(--fh); font-size: clamp(40px,5.5vw,76px);
+  font-weight: 300; line-height: 1.08; margin-bottom: 26px;
+  opacity: 0; transform: translateY(28px);
+}
+.cta-title em { font-style: italic; color: var(--sage-mid); }
+.cta-sub  { font-size: 17px; color: var(--muted); line-height: 1.7; margin-bottom: 52px; opacity: 0; transform: translateY(18px); }
+.cta-btns { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; opacity: 0; transform: translateY(18px); }
+.btn-lg {
+  padding: 19px 54px; font-size: 13px; font-weight: 500; letter-spacing: .12em;
+  text-transform: uppercase; border-radius: 100px;
+  transition: transform .3s var(--ease-out), box-shadow .3s;
+}
+.btn-lg:hover { transform: translateY(-3px); box-shadow: 0 18px 50px rgba(45,74,62,.22); }
+.btn-fill    { background: var(--sage-deep); color: var(--white); }
+.btn-outline { border: 1.5px solid var(--sage-deep); color: var(--sage-deep); }
+.cta-note { margin-top: 22px; font-size: 13px; color: var(--muted); opacity: 0; }
+
+/* ============================
+   FOOTER
+   ============================ */
+footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88px 64px 44px; }
+.foot-top {
+  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 64px;
+  padding-bottom: 64px; border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.foot-logo { width: 64px; height: 64px; margin-bottom: 22px; opacity: .65; filter: brightness(0) invert(1); }
+.foot-blurb { font-size: 14.5px; line-height: 1.85; max-width: 310px; color: rgba(255,255,255,.5); }
+.foot-col h4 { font-size: 10.5px; letter-spacing: .32em; text-transform: uppercase; color: var(--sage); margin-bottom: 22px; }
+.foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.foot-col li a { font-size: 14px; color: rgba(255,255,255,.5); transition: color .3s; }
+.foot-col li a:hover { color: var(--sage); }
+.foot-contact a {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; color: rgba(255,255,255,.5); margin-bottom: 13px; transition: color .3s;
+}
+.foot-contact a:hover { color: var(--sage); }
+.foot-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 42px; font-size: 12px; color: rgba(255,255,255,.3);
+}
+.foot-socials { display: flex; gap: 14px; }
+.foot-socials a {
+  width: 37px; height: 37px; border: 1px solid rgba(255,255,255,.12);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,.45); transition: border-color .3s, color .3s;
+}
+.foot-socials a:hover { border-color: var(--sage); color: var(--sage); }
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media (max-width: 1100px) {
+  #nav, #nav.scrolled { padding-left: 40px; padding-right: 40px; }
+  .section { padding: 110px 40px; }
+  .hero-content, .hero-scroll { left: 40px; padding-left: 40px; }
+  .trust-bar { gap: 44px; padding: 44px 40px; }
+  .pain-content, .about-content { padding: 90px 60px; }
+  .prod-grid { grid-template-columns: 1fr; max-width: 580px; }
+  .testi-grid { grid-template-columns: 1fr 1fr; }
+  footer { padding: 80px 40px 44px; }
+  .foot-top { gap: 44px; }
+}
+
+@media (max-width: 768px) {
+  body { cursor: auto; }
+  #c-dot, #c-ring { display: none; }
+  #nav .nav-links { display: none; }
+  #nav, #nav.scrolled { padding: 16px 24px; }
+  .hero-content { padding: 0 24px; max-width: 100%; }
+  .hero-scroll { display: none; }
+  .hero-ctas { flex-direction: column; align-items: flex-start; }
+  .section { padding: 88px 24px; }
+  .trust-bar { flex-wrap: wrap; gap: 28px; padding: 52px 24px; }
+  .trust-sep { display: none; }
+  .trust-item { min-width: calc(50% - 28px); }
+  #pain  { grid-template-columns: 1fr; }
+  .pain-img-wrap { height: 320px; }
+  .pain-content { padding: 64px 24px; }
+  .prod-head { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .steps { grid-template-columns: 1fr; }
+  .steps::before { display: none; }
+  #about { grid-template-columns: 1fr; }
+  .about-img-wrap { height: 420px; order: -1; }
+  .about-content { padding: 64px 24px; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .cta-btns { flex-direction: column; align-items: center; }
+  .foot-top { grid-template-columns: 1fr; gap: 44px; }
+  .foot-bottom { flex-direction: column; gap: 22px; text-align: center; }
+  footer { padding: 64px 24px 40px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <img src="Branding/Logo NEU - kleiners V (2).png.png" alt="dein frosch" class="pl-logo">
+  <div class="pl-tagline"><span>Gesundheit · Wohlfühlen · Durchatmen</span></div>
+  <div class="pl-bar-wrap"><div class="pl-bar" id="pl-bar"></div></div>
+</div>
+
+<!-- CURSOR -->
+<div id="c-dot"></div>
+<div id="c-ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#"><img src="Branding/Logo NEU - kleiners V (2).png.png" alt="dein frosch Logo" class="nav-logo"></a>
+  <ul class="nav-links">
+    <li><a href="#pain">Warum HYLA</a></li>
+    <li><a href="#products">Produkte</a></li>
+    <li><a href="#how">So geht's</a></li>
+    <li><a href="#about">Über mich</a></li>
+    <li><a href="#testimonials">Stimmen</a></li>
+  </ul>
+  <a href="tel:+436776197091" class="nav-cta magnetic">Demo buchen</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-overlay"></div>
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span>AT | DE | CH</span></div>
+    <h1 class="hero-title">
+      <span class="ln"><span class="lni">Dein Zuhause.</span></span>
+      <span class="ln"><span class="lni"><em>Rein wie</em></span></span>
+      <span class="ln"><span class="lni">die Natur.</span></span>
+    </h1>
+    <p class="hero-sub">Kein Filter. Kein Beutel. Keine Chemie.<br><br>Wasser – nothing else für eine saubere Luft und ein hygienisches Zuhause – für dich, deine Kinder und deine Haustiere.</p>
+    <div class="hero-ctas">
+      <a href="tel:+436776197091" class="btn-primary magnetic">Gratis Demo vereinbaren</a>
+      <a href="#products" class="btn-ghost">
+        <span class="arr">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+        Produkte entdecken
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><div class="trust-num" data-count="100" data-suffix="%">0</div><div class="trust-label">Natürliches Filtermedium</div></div>
+  <div class="trust-sep"></div>
+  <div class="trust-item"><div class="trust-num" data-count="99" data-suffix="%">0</div><div class="trust-label">Weniger Schadstoffe in der Luft</div></div>
+  <div class="trust-sep"></div>
+  <div class="trust-item"><div class="trust-num" data-count="1">0</div><div class="trust-label">Gerät für saubere Luft &amp; Böden</div></div>
+  <div class="trust-sep"></div>
+  <div class="trust-item"><div class="trust-num" data-count="0">0</div><div class="trust-label">Chemie. Wasser als Filter.</div></div>
+</div>
+
+<!-- PAIN -->
+<section id="pain">
+  <div class="pain-img-wrap">
+    <img id="px-pain" src="Branding/Bilder/Produkte/HYLABoden.jpg" alt="HYLA Bodenreinigung">
+  </div>
+  <div class="pain-content">
+    <div class="s-eye">Kennst du das?</div>
+    <h2 class="s-title">Du putzt täglich –<br>und es <em>fühlt sich</em><br>nie wirklich sauber an.</h2>
+    <div class="pain-list">
+      <div class="pain-item">
+        <div class="p-icon">🧪</div>
+        <div>
+          <h4>Chemie in jedem Putzmittel</h4>
+          <p>Reiniger reizen Haut und Atemwege – besonders bei Kindern, Babies und Haustieren. Die Reinigungsmittel hinterlassen Rückstände auf den Oberflächen.</p>
+        </div>
+      </div>
+      <div class="pain-item">
+        <div class="p-icon">😮‍💨</div>
+        <div>
+          <h4>Staubsauger verteilen Feinstaub</h4>
+          <p>Herkömmliche Geräte blasen Feinstaub zurück in die Raumluft – du atmest ihn ein.</p>
+        </div>
+      </div>
+      <div class="pain-item">
+        <div class="p-icon">⏰</div>
+        <div>
+          <h4>Stunden putzen, wenig Wirkung</h4>
+          <p>Kalk, Fett, Schimmel – trotz ständigem Schrubben kehrt alles zurück.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION BRIDGE -->
+<section id="solution" class="section">
+  <canvas id="sol-water"></canvas>
+  <div class="sol-inner">
+    <div class="s-eye" style="text-align:center">Die Lösung</div>
+    <h2 class="s-title" style="text-align:center">Der Unterschied</h2>
+    <p class="sol-big">
+      HYLA nutzt die <strong>Kraft des Wassers</strong> – als natürlichsten Filter der Welt. Kein Beutel, kein Mikroplastik, keine Chemie. Dein Zuhause ist <strong>wirklich sauber</strong> – und die Luft, die du atmest, auch.
+    </p>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" class="section">
+  <div class="prod-head">
+    <div>
+      <div class="s-eye">Die Systeme</div>
+      <h2 class="s-title">Zwei Produkte.<br><em>Ein sauberes Zuhause.</em></h2>
+    </div>
+  </div>
+  <div class="prod-grid">
+
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="Branding/Bilder/Produkte/HYLA_sofa.jpg" alt="HYLA EST System">
+        <div class="prod-badge">Täglicher Begleiter</div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">HYLA EST</div>
+        <p class="prod-desc">Der HYLA EST ist dein täglicher Begleiter im Haushalt – er übernimmt 80 % aller Reinigungsaufgaben. Als Bestseller bewährt er sich täglich in hunderten Familien.</p>
+        <ul class="prod-feats">
+          <li>Wasser als natürlicher Filter – kein Beutel nötig</li>
+          <li>Reinigt Böden und Luft in einem Durchgang</li>
+          <li>Ideal für Allergiker, Kinder &amp; Haustiere</li>
+          <li>Gerüche werden neutralisiert, nicht überdeckt</li>
+        </ul>
+        <a href="https://www.deinfrosch.at" target="_blank" class="prod-link">Mehr erfahren →</a>
+      </div>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="Branding/Bilder/Produkte/Steamer - 1 (1).png" alt="HYLA STEAMER">
+        <div class="prod-badge" style="background:var(--mauve); white-space:normal; text-align:center; max-width:160px; line-height:1.35; letter-spacing:.06em; padding:7px 14px;">Gegen hartnäckigen Schmutz &amp; Desinfektion</div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">HYLA STEAMER</div>
+        <p class="prod-desc">Der HYLA STEAMER ergänzt den EST perfekt – er übernimmt die restlichen 20 % für Spezialanwendungen wie Desinfektion, Fett- &amp; Kalkentfernung uvm.</p>
+        <ul class="prod-feats">
+          <li>Bis zu 180 °C Trockendampf</li>
+          <li>Tötet 99,9 % aller Keime &amp; Bakterien</li>
+          <li>Komplett ohne Chemie – kindersicher</li>
+          <li>Schnell, schonend für alle Oberflächen</li>
+        </ul>
+        <a href="https://www.deinfrosch.at" target="_blank" class="prod-link">Mehr erfahren →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="section">
+  <div class="s-eye">So funktioniert's</div>
+  <h2 class="s-title">In 3 Schritten zu<br><em>deinem sauberen Zuhause</em></h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-n">01</div>
+      <h3>Gratis Demo buchen</h3>
+      <p>Ruf mich an oder schreib mir – ich komme kostenlos und unverbindlich zu dir nach Hause in den Raum Braunau / Innviertel.</p>
+    </div>
+    <div class="step">
+      <div class="step-n">02</div>
+      <h3>Live erleben</h3>
+      <p>Ich zeige dir, was HYLA kann – direkt an deinen Böden, deiner Luft, deinen Oberflächen. Du siehst den Unterschied sofort.</p>
+    </div>
+    <div class="step">
+      <div class="step-n">03</div>
+      <h3>Frei entscheiden</h3>
+      <p>Kein Druck, kein Verkaufsgespräch. Du entscheidest in Ruhe – und ich begleite dich auf dem Weg zu einem wirklich sauberen Zuhause.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-content">
+    <div class="s-eye">Über mich</div>
+    <h2 class="s-title">Victoria Petermaier</h2>
+    <blockquote class="about-quote">"Als Mama weiß ich, wie wichtig eine wirklich saubere Luft zuhause ist – für mich und für alle, die ich liebe."</blockquote>
+    <p class="about-txt">Ich bin Victoria – zertifizierte HYLA-Beraterin aus dem Innviertel. Bei mir bekommst du eine ehrliche Beratung auf Augenhöhe, keine leeren Versprechen oder Verkaufsmaschen – wir sehen uns gemeinsam an, was in deinem Haushalt oder Betrieb benötigt wird.</p>
+    <div class="about-sig">Victoria ♡</div>
+    <div class="about-phone">
+      <a href="tel:+436776197091" class="btn-primary magnetic">+43 677 61970911</a>
+    </div>
+  </div>
+  <div class="about-img-wrap">
+    <img id="px-about" src="Branding/Bilder/Foto_Victoria.jpg" alt="Victoria Petermaier – dein frosch">
+    <div class="about-badge">
+      <strong>Victoria Petermaier</strong>
+      <span>Zertifizierte HYLA-Beraterin</span>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section">
+  <div class="s-eye" style="text-align:center">Das sagen meine Kundinnen</div>
+  <h2 class="s-title" style="text-align:center">Echte Frauen.<br><em>Echte Ergebnisse.</em></h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Seit ich den HYLA EST habe, hat mein Sohn mit Asthma viel weniger Beschwerden. Die Luft zuhause ist einfach eine andere – frischer, reiner."</p>
+      <div class="testi-author">
+        <div class="testi-av">S</div>
+        <div class="testi-info"><strong>Sandra M.</strong><span>Mama von 2 Kindern, Salzburg</span></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Der HYLA STEAMER ist ein echter Gamechanger! Mein Bad war noch nie so sauber – und das ohne ein einziges Putzmittel. Ich kann es kaum glauben."</p>
+      <div class="testi-author">
+        <div class="testi-av">M</div>
+        <div class="testi-info"><strong>Martina K.</strong><span>Hausfrau &amp; Hundemama, Braunau</span></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Victoria hat sich so viel Zeit für mich genommen. Keine Verkaufsmasche – einfach ehrliche, herzliche Beratung. Ich bin von Herzen begeistert!"</p>
+      <div class="testi-author">
+        <div class="testi-av">L</div>
+        <div class="testi-info"><strong>Lisa B.</strong><span>Junge Mutter, Innviertel</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="section">
+  <div class="cta-inner">
+    <h2 class="cta-title">Bereit für ein <em>wirklich sauberes</em> Zuhause?</h2>
+    <p class="cta-sub">Buch deine kostenlose, unverbindliche Demo. Ich komme zu dir – und du siehst live, was HYLA wirklich kann.</p>
+    <div class="cta-btns">
+      <a href="tel:+436776197091" class="btn-lg btn-fill magnetic">Jetzt Demo buchen</a>
+      <a href="mailto:vici.hyla@gmail.com" class="btn-lg btn-outline magnetic">E-Mail schreiben</a>
+    </div>
+    <p class="cta-note">Kostenlos · Unverbindlich · Raum Braunau &amp; Innviertel</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <div>
+      <img src="Branding/Logo NEU (23).png.png" alt="dein frosch" class="foot-logo">
+      <p class="foot-blurb">HYLA-Reinigungssysteme für gesundheitsbewusste Familien. Sauber, chemiefrei, ehrlich.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#pain">Warum HYLA</a></li>
+        <li><a href="#products">Produkte</a></li>
+        <li><a href="#how">So geht's</a></li>
+        <li><a href="#about">Über mich</a></li>
+        <li><a href="#testimonials">Stimmen</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Kontakt</h4>
+      <div class="foot-contact">
+        <a href="tel:+436776197091">📞 +43 677 61970911</a>
+        <a href="mailto:vici.hyla@gmail.com">✉️ vici.hyla@gmail.com</a>
+        <a href="https://www.deinfrosch.at" target="_blank">🌐 www.deinfrosch.at</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2025 Victoria Petermaier – dein frosch · Alle Rechte vorbehalten</span>
+    <div class="foot-socials">
+      <a href="https://www.instagram.com" target="_blank" title="Instagram">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="2" width="20" height="20" rx="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+      <a href="https://www.pinterest.com" target="_blank" title="Pinterest">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.75 1.22-5.17 1.22-5.17s-.31-.63-.31-1.55c0-1.45.84-2.54 1.89-2.54.89 0 1.32.67 1.32 1.47 0 .9-.57 2.23-.87 3.47-.25 1.04.52 1.88 1.54 1.88 1.84 0 3.08-2.37 3.08-5.16 0-2.13-1.44-3.62-3.5-3.62-2.38 0-3.78 1.79-3.78 3.63 0 .72.28 1.49.62 1.91.07.08.08.16.06.24l-.23.95c-.04.16-.13.19-.3.11-1.12-.52-1.82-2.17-1.82-3.49 0-2.83 2.06-5.44 5.94-5.44 3.12 0 5.55 2.22 5.55 5.19 0 3.1-1.95 5.59-4.66 5.59-.91 0-1.77-.47-2.06-1.03l-.56 2.09c-.2.78-.75 1.76-1.12 2.35.84.26 1.74.4 2.66.4 5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- CDN LIBRARIES -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+<script>
+'use strict';
+
+/* ============================================================
+   GSAP PLUGIN REGISTRATION
+   ============================================================ */
+gsap.registerPlugin(ScrollTrigger);
+
+/* ============================================================
+   LENIS SMOOTH SCROLL
+   ============================================================ */
+const lenis = new Lenis({
+  duration: 1.35,
+  easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  smoothTouch: false,
+});
+gsap.ticker.add(t => lenis.raf(t * 1000));
+gsap.ticker.lagSmoothing(0);
+lenis.on('scroll', ScrollTrigger.update);
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+const cDot  = document.getElementById('c-dot');
+const cRing = document.getElementById('c-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  gsap.to(cDot, { x: mx, y: my, duration: .08, overwrite: true });
+});
+
+(function ringLoop() {
+  rx += (mx - rx) * .11;
+  ry += (my - ry) * .11;
+  gsap.set(cRing, { x: rx, y: ry });
+  requestAnimationFrame(ringLoop);
+})();
+
+document.querySelectorAll('a, button, .prod-card, .testi-card, .btn-primary, .btn-lg, .nav-cta').forEach(el => {
+  el.addEventListener('mouseenter', () => cRing.classList.add('hover'));
+  el.addEventListener('mouseleave', () => cRing.classList.remove('hover'));
+});
+
+/* ============================================================
+   MAGNETIC BUTTONS
+   ============================================================ */
+document.querySelectorAll('.magnetic').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r  = btn.getBoundingClientRect();
+    const dx = (e.clientX - r.left - r.width  / 2) * .28;
+    const dy = (e.clientY - r.top  - r.height / 2) * .28;
+    gsap.to(btn, { x: dx, y: dy, duration: .35, ease: 'power3.out' });
+  });
+  btn.addEventListener('mouseleave', () => {
+    gsap.to(btn, { x: 0, y: 0, duration: .55, ease: 'elastic.out(1,.5)' });
+  });
+});
+
+/* ============================================================
+   THREE.JS HERO PARTICLES
+   ============================================================ */
+(function initThree() {
+  const canvas   = document.getElementById('hero-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(72, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 5;
+
+  const COUNT   = 200;
+  const pos     = new Float32Array(COUNT * 3);
+  const col     = new Float32Array(COUNT * 3);
+  const vel     = [];
+
+  const palette = [
+    new THREE.Color('#aac2b4'),
+    new THREE.Color('#5a82a1'),
+    new THREE.Color('#b4c4ce'),
+    new THREE.Color('#809db2'),
+    new THREE.Color('#af729e'),
+    new THREE.Color('#c9d9d2'),
+  ];
+
+  for (let i = 0; i < COUNT; i++) {
+    pos[i*3]   = (Math.random() - .5) * 16;
+    pos[i*3+1] = (Math.random() - .5) * 11;
+    pos[i*3+2] = (Math.random() - .5) * 5;
+    const c    = palette[Math.floor(Math.random() * palette.length)];
+    col[i*3]   = c.r; col[i*3+1] = c.g; col[i*3+2] = c.b;
+    vel.push({
+      x: (Math.random() - .5) * .0028,
+      y:  Math.random()       * .0055 + .0008,
+      z: (Math.random() - .5) * .0012,
+    });
+  }
+
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  geo.setAttribute('color',    new THREE.BufferAttribute(col, 3));
+
+  const mat = new THREE.PointsMaterial({
+    size: .075, vertexColors: true, transparent: true,
+    opacity: .55, sizeAttenuation: true,
+  });
+  scene.add(new THREE.Points(geo, mat));
+
+  let tmx = 0, tmy = 0;
+  document.addEventListener('mousemove', e => {
+    tmx = (e.clientX / window.innerWidth  - .5) * 2;
+    tmy = (e.clientY / window.innerHeight - .5) * 2;
+  });
+
+  (function animate() {
+    requestAnimationFrame(animate);
+    const p = geo.attributes.position.array;
+    for (let i = 0; i < COUNT; i++) {
+      p[i*3]   += vel[i].x;
+      p[i*3+1] += vel[i].y;
+      p[i*3+2] += vel[i].z;
+      if (p[i*3+1] >  6)   p[i*3+1] = -6;
+      if (p[i*3]   >  8.5) p[i*3]   = -8.5;
+      if (p[i*3]   < -8.5) p[i*3]   =  8.5;
+    }
+    geo.attributes.position.needsUpdate = true;
+    camera.position.x += (tmx * .28 - camera.position.x) * .018;
+    camera.position.y += (-tmy * .18 - camera.position.y) * .018;
+    renderer.render(scene, camera);
+  })();
+
+  window.addEventListener('resize', () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+  });
+})();
+
+/* ============================================================
+   PRELOADER
+   ============================================================ */
+window.addEventListener('load', () => {
+  const pl   = document.getElementById('preloader');
+  const logo = pl.querySelector('.pl-logo');
+  const tag  = pl.querySelector('.pl-tagline span');
+  const bw   = pl.querySelector('.pl-bar-wrap');
+  const bar  = document.getElementById('pl-bar');
+
+  gsap.timeline({
+    onComplete() {
+      gsap.to(pl, {
+        yPercent: -100, duration: 1, ease: 'power3.inOut',
+        onComplete() { pl.style.display = 'none'; playHero(); }
+      });
+    }
+  })
+  .to(logo, { opacity: 1, scale: 1, duration: .8, ease: 'back.out(1.6)' })
+  .to(tag,  { y: 0,       duration: .55, ease: 'power3.out' }, '-=.25')
+  .to(bw,   { opacity: 1, duration: .3  }, '-=.1')
+  .to(bar,  { width: '100%', duration: .9, ease: 'power2.inOut' })
+  .to({},   { duration: .25 });
+});
+
+/* ============================================================
+   HERO ENTRANCE
+   ============================================================ */
+function playHero() {
+  gsap.timeline()
+    .to('.hero-eyebrow span', { y: 0, duration: .7,  ease: 'power3.out' })
+    .to('.hero-title .lni',   { y: 0, duration: .95, stagger: .11, ease: 'power4.out' }, '-=.35')
+    .to('.hero-sub',   { opacity: 1, y: 0, duration: .7, ease: 'power3.out' }, '-=.45')
+    .to('.hero-ctas',  { opacity: 1, y: 0, duration: .7, ease: 'power3.out' }, '-=.35')
+    .to('.hero-scroll',{ opacity: 1,       duration: .5                      }, '-=.1' );
+}
+
+/* ============================================================
+   NAV SCROLL STATE
+   ============================================================ */
+ScrollTrigger.create({
+  start: 'top -88px',
+  onEnter:     () => document.getElementById('nav').classList.add('scrolled'),
+  onLeaveBack: () => document.getElementById('nav').classList.remove('scrolled'),
+});
+
+/* ============================================================
+   GENERIC REVEAL HELPER
+   ============================================================ */
+function revealOn(selector, vars = {}) {
+  gsap.utils.toArray(selector).forEach(el => {
+    gsap.to(el, {
+      opacity: 1, y: 0, x: 0, duration: .8, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 87%' },
+      ...vars
+    });
+  });
+}
+
+revealOn('.s-eye');
+revealOn('.s-title');
+revealOn('.sol-big');
+
+/* ============================================================
+   TRUST BAR – COUNTER ANIMATION
+   ============================================================ */
+ScrollTrigger.create({
+  trigger: '.trust-bar', start: 'top 82%', once: true,
+  onEnter() {
+    document.querySelectorAll('.trust-item').forEach((item, i) => {
+      gsap.to(item, { opacity: 1, y: 0, duration: .65, delay: i * .1 });
+      const num    = item.querySelector('.trust-num');
+      const target = parseInt(num.dataset.count);
+      const suffix = num.dataset.suffix || '';
+      gsap.to({ val: 0 }, {
+        val: target, duration: 1.6, delay: i * .1 + .3, ease: 'power2.out',
+        onUpdate() { num.textContent = Math.round(this.targets()[0].val) + suffix; },
+        onComplete() { num.textContent = target + suffix; },
+      });
+    });
+  }
+});
+
+/* ============================================================
+   PAIN ITEMS
+   ============================================================ */
+document.querySelectorAll('.pain-item').forEach((el, i) => {
+  gsap.to(el, {
+    opacity: 1, x: 0, duration: .7, ease: 'power3.out', delay: i * .14,
+    scrollTrigger: { trigger: el, start: 'top 88%' }
+  });
+});
+
+/* ============================================================
+   PRODUCT CARDS
+   ============================================================ */
+document.querySelectorAll('.prod-card').forEach((card, i) => {
+  gsap.to(card, {
+    opacity: 1, y: 0, duration: .85, ease: 'power3.out', delay: i * .18,
+    scrollTrigger: { trigger: '#products', start: 'top 72%' }
+  });
+});
+
+/* ============================================================
+   STEPS
+   ============================================================ */
+document.querySelectorAll('.step').forEach((step, i) => {
+  gsap.to(step, {
+    opacity: 1, y: 0, duration: .75, ease: 'power3.out', delay: i * .15,
+    scrollTrigger: { trigger: '#how', start: 'top 72%' }
+  });
+});
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+gsap.to('.about-quote', {
+  opacity: 1, x: 0, duration: .9, ease: 'power3.out',
+  scrollTrigger: { trigger: '.about-quote', start: 'top 82%' }
+});
+gsap.to('.about-txt', {
+  opacity: 1, y: 0, duration: .75, ease: 'power3.out',
+  scrollTrigger: { trigger: '.about-txt', start: 'top 86%' }
+});
+gsap.to('.about-sig', {
+  opacity: 1, duration: .7,
+  scrollTrigger: { trigger: '.about-sig', start: 'top 90%' }
+});
+gsap.to('.about-phone', {
+  opacity: 1, y: 0, duration: .7,
+  scrollTrigger: { trigger: '.about-phone', start: 'top 92%' }
+});
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+document.querySelectorAll('.testi-card').forEach((card, i) => {
+  gsap.to(card, {
+    opacity: 1, y: 0, duration: .8, ease: 'power3.out', delay: i * .14,
+    scrollTrigger: { trigger: '#testimonials', start: 'top 72%' }
+  });
+});
+
+/* ============================================================
+   CTA SECTION
+   ============================================================ */
+['.cta-title','.cta-sub','.cta-btns','.cta-note'].forEach((sel, i) => {
+  gsap.to(sel, {
+    opacity: 1, y: 0, duration: .8, ease: 'power3.out', delay: i * .14,
+    scrollTrigger: { trigger: '#cta', start: 'top 78%' }
+  });
+});
+
+/* ============================================================
+   PARALLAX – PAIN IMAGE
+   ============================================================ */
+gsap.to('#px-pain', {
+  yPercent: -14, ease: 'none',
+  scrollTrigger: {
+    trigger: '#pain', start: 'top bottom', end: 'bottom top', scrub: true,
+  }
+});
+
+/* ============================================================
+   PARALLAX – ABOUT IMAGE
+   ============================================================ */
+/* ============================================================
+   WATER RIPPLE – SOLUTION SECTION
+   ============================================================ */
+(function initWaterRipple() {
+  const canvas = document.getElementById('sol-water');
+  const ctx    = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const ripples = [];
+  const colors  = [
+    'rgba(90,130,161,',   // steel blue
+    'rgba(170,194,180,',  // sage
+    'rgba(128,157,178,',  // blue-light
+    'rgba(90,130,161,',
+  ];
+
+  function spawn() {
+    const pad = 60;
+    ripples.push({
+      x:     pad + Math.random() * (canvas.width  - pad * 2),
+      y:     pad + Math.random() * (canvas.height - pad * 2),
+      r:     0,
+      maxR:  70 + Math.random() * 90,
+      alpha: 0.22 + Math.random() * .12,
+      speed: 0.55 + Math.random() * .6,
+      color: colors[Math.floor(Math.random() * colors.length)],
+    });
+  }
+
+  // Seed some initial ripples
+  for (let i = 0; i < 5; i++) spawn();
+  setInterval(spawn, 700);
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = ripples.length - 1; i >= 0; i--) {
+      const rp = ripples[i];
+      ctx.beginPath();
+      ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2);
+      ctx.strokeStyle = rp.color + rp.alpha.toFixed(3) + ')';
+      ctx.lineWidth   = 1.4;
+      ctx.stroke();
+      // Inner faint fill circle
+      if (rp.r < 20) {
+        ctx.beginPath();
+        ctx.arc(rp.x, rp.y, rp.r * .4, 0, Math.PI * 2);
+        ctx.fillStyle = rp.color + (rp.alpha * .15).toFixed(3) + ')';
+        ctx.fill();
+      }
+      rp.r     += rp.speed;
+      rp.alpha -= rp.alpha / (rp.maxR / rp.speed);
+      if (rp.r >= rp.maxR) ripples.splice(i, 1);
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+gsap.to('#px-about', {
+  yPercent: -11, ease: 'none',
+  scrollTrigger: {
+    trigger: '#about', start: 'top bottom', end: 'bottom top', scrub: true,
+  }
+});
+
+</script>
+</body>
+</html>
