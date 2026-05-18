@@ -144,39 +144,6 @@ a    { text-decoration: none; color: inherit; }
 .pl-bar { height: 100%; width: 0; background: var(--sage-deep); }
 
 /* ============================
-   ANNOUNCEMENT BANNER
-   ============================ */
-#offer-banner {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1010;
-  background: var(--sage-deep); color: var(--white);
-  padding: 11px 64px; display: flex; align-items: center; justify-content: center;
-  gap: 16px; font-size: 13px; line-height: 1.4;
-  transition: transform .4s var(--ease-out);
-}
-#offer-banner.hidden { transform: translateY(-100%); }
-#offer-banner a.banner-link {
-  color: var(--white); text-decoration: underline; text-underline-offset: 3px;
-  font-weight: 600; white-space: nowrap; transition: opacity .3s;
-}
-#offer-banner a.banner-link:hover { opacity: .8; }
-#offer-banner .banner-badge {
-  background: #c9a84c; color: var(--sage-deep);
-  font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
-  padding: 3px 10px; border-radius: 100px; white-space: nowrap;
-}
-#banner-close {
-  position: absolute; right: 24px; top: 50%; transform: translateY(-50%);
-  background: none; border: none; cursor: pointer;
-  color: rgba(255,255,255,.55); padding: 4px; line-height: 0;
-  transition: color .3s;
-}
-#banner-close:hover { color: var(--white); }
-@media (max-width: 768px) {
-  #offer-banner { padding: 11px 44px 11px 16px; font-size: 12px; gap: 10px; }
-  #banner-close { right: 12px; }
-}
-
-/* ============================
    NAVIGATION
    ============================ */
 #nav {
@@ -783,16 +750,6 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
 <!-- SKIP LINK -->
 <a href="#main" class="skip-link">Zum Inhalt springen</a>
 
-<!-- OFFER BANNER -->
-<div id="offer-banner" role="banner" aria-label="Tagesangebot">
-  <span class="banner-badge">Nur heute</span>
-  <span>HYLA EST + Nimbus Nassreinigungsset (Wert <strong>&gt;400&nbsp;€</strong>) gratis –</span>
-  <a href="angebot-heute.html" class="banner-link">Zum Angebot</a>
-  <button id="banner-close" aria-label="Banner schliessen">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-  </button>
-</div>
-
 <!-- NAV -->
 <header>
 <nav id="nav" aria-label="Hauptnavigation">
@@ -1258,34 +1215,6 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
   </div>
 </footer>
 
-<script>
-(function () {
-  const banner = document.getElementById('offer-banner');
-  const nav    = document.getElementById('nav');
-  const closeBtn = document.getElementById('banner-close');
-
-  function setBannerOffset() {
-    const h = banner.classList.contains('hidden') ? 0 : banner.offsetHeight;
-    nav.style.top = h + 'px';
-  }
-
-  setBannerOffset();
-  window.addEventListener('resize', setBannerOffset, { passive: true });
-
-  closeBtn.addEventListener('click', function () {
-    banner.classList.add('hidden');
-    nav.style.top = '0px';
-    try { sessionStorage.setItem('bannerDismissed', '1'); } catch (_) {}
-  });
-
-  try {
-    if (sessionStorage.getItem('bannerDismissed') === '1') {
-      banner.classList.add('hidden');
-      nav.style.top = '0px';
-    }
-  } catch (_) {}
-})();
-</script>
 
 </body>
 </html>

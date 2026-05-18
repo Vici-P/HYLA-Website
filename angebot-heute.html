@@ -357,18 +357,26 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.5); padding: 36p
 
 <script>
 (function () {
-  const now = new Date();
-  const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
+  const OFFER_ACTIVE = false; // auf true setzen wenn Angebot wieder aktiv
 
   function pad(n) { return String(n).padStart(2, '0'); }
+
+  function expire() {
+    document.getElementById('countdown-wrap').style.display = 'none';
+    document.getElementById('expired-msg').style.display = 'block';
+    document.getElementById('cta-btn').setAttribute('disabled', '');
+    document.getElementById('cta-btn-2').setAttribute('disabled', '');
+  }
+
+  if (!OFFER_ACTIVE) { expire(); return; }
+
+  const now = new Date();
+  const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
 
   function tick() {
     const diff = midnight - Date.now();
     if (diff <= 0) {
-      document.getElementById('countdown-wrap').style.display = 'none';
-      document.getElementById('expired-msg').style.display = 'block';
-      document.getElementById('cta-btn').setAttribute('disabled', '');
-      document.getElementById('cta-btn-2').setAttribute('disabled', '');
+      expire();
       return;
     }
     const h = Math.floor(diff / 3600000);
