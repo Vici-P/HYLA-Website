@@ -443,3 +443,32 @@ if (skipHeavy) { document.getElementById('sol-water').style.display = 'none'; }
   btn.addEventListener('mouseenter', () => cRing.classList.add('hover'));
   btn.addEventListener('mouseleave', () => cRing.classList.remove('hover'));
 })();
+
+/* ============================================================
+   FAQ ACCORDION
+   ============================================================ */
+(function initFaq() {
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    }, { passive: true });
+  });
+
+  gsap.utils.toArray('.faq-item').forEach((el, i) => {
+    gsap.to(el, {
+      opacity: 1, y: 0, duration: 0.6, delay: i * 0.07,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
+    });
+  });
+})();
+

@@ -51,7 +51,149 @@
   "founder": { "@type": "Person", "name": "Victoria Petermaier" },
   "address": { "@type": "PostalAddress", "addressCountry": "AT" },
   "sameAs": ["https://deinfrosch.at"],
-  "areaServed": ["AT", "DE", "CH"]
+  "areaServed": ["AT", "DE", "CH"],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": "3",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Tanja W." },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Sehr freundliche Hyla-Beraterin. Hat sich sehr viel Zeit genommen mir das Gerät vorzustellen und mir alles bestens erklärt. Auch für Fragen nach dem Kauf steht sie einem immer zur Verfügung.",
+      "publisher": { "@type": "Organization", "name": "Google" }
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Claudia M." },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Sehr freundliche und nette Beratung.",
+      "publisher": { "@type": "Organization", "name": "Google" }
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Josef F." },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "5 von 5 Sternen auf Google.",
+      "publisher": { "@type": "Organization", "name": "Google" }
+    }
+  ]
+}
+</script>
+
+<!-- JSON-LD: Person (Victoria Petermaier) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Victoria Petermaier",
+  "jobTitle": "Zertifizierte HYLA Beraterin",
+  "description": "Victoria Petermaier ist zertifizierte HYLA Vertriebspartnerin in Österreich mit Schwerpunkt Innviertel, Bezirk Braunau und Oberösterreich. Sie berät gesundheitsbewusste Familien rund um chemiefreie Reinigung und Luftqualität.",
+  "url": "https://deinfrosch.at/about-me/",
+  "telephone": "+436776197091",
+  "email": "vici.hyla@gmail.com",
+  "worksFor": { "@type": "Organization", "name": "HYLA Deutschland GmbH" },
+  "knowsAbout": ["HYLA Reinigungssysteme", "Wasserfilter-Staubsauger", "Luftreinigung", "chemiefreie Reinigung", "Allergiker-Haushalt"],
+  "areaServed": ["Österreich", "Deutschland", "Schweiz"]
+}
+</script>
+
+<!-- JSON-LD: Products -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "name": "HYLA EST",
+      "description": "Das HYLA EST vereint Staubsauger und Luftreiniger in einem Gerät. Das patentierte Wasserfilter-Prinzip bindet Staub, Milben, Pollen und Gerüche im Wasser – ohne Chemie, ohne Beutel. Ideal für Allergiker, Haustierbesitzer und Familien.",
+      "brand": { "@type": "Brand", "name": "HYLA" },
+      "image": "https://deinfrosch.at/Branding/Bilder/Produkte/HYLA_sofa.webp",
+      "url": "https://deinfrosch.at/hyla-est.html",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "seller": { "@type": "Person", "name": "Victoria Petermaier", "url": "https://deinfrosch.at/" }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "HYLA STEAMER",
+      "description": "Der HYLA STEAMER ist ein Trockendampfreiniger mit bis zu 180 °C Dampftemperatur. Er desinfiziert und reinigt nahezu alle Oberflächen chemiefreiohne Rückstände – von Küche über Bad bis zum Polster.",
+      "brand": { "@type": "Brand", "name": "HYLA" },
+      "image": "https://deinfrosch.at/Branding/Bilder/Produkte/SteamerHero.webp",
+      "url": "https://deinfrosch.at/hyla-steamer.html",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "seller": { "@type": "Person", "name": "Victoria Petermaier", "url": "https://deinfrosch.at/" }
+      }
+    }
+  ]
+}
+</script>
+
+<!-- JSON-LD: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was kostet eine HYLA-Vorführung?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die HYLA-Vorführung ist völlig kostenlos und unverbindlich. Victoria Petermaier kommt direkt zu dir nach Hause, zeigt dir das Gerät live und beantwortet alle deine Fragen – ohne Kaufdruck, ohne versteckte Kosten."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist HYLA für Allergiker geeignet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, das HYLA System ist besonders gut für Allergiker geeignet. Das patentierte Wasserfilter-Prinzip bindet Staub, Milben, Pollen und Tierhaare im Wasser, anstatt sie wie Beutelstaubsauger wieder in die Luft zu blasen. Das Ergebnis: messbar bessere Luftqualität im Raum."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie funktioniert das HYLA Wasserfilter-System?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das HYLA System nutzt Wasser als Filtersystem: Statt Staub in einem Beutel oder Filter zu sammeln, wird er direkt ins Wasser geleitet und dort gebunden. Das Wasser wird nach jedem Einsatz einfach ausgeleert. Es braucht keine Beutel, keine teuren Ersatzfilter und keine Chemie."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist der Unterschied zwischen HYLA EST und HYLA STEAMER?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das HYLA EST ist das Wasserfilter-Reinigungssystem für Staubsaugen und Luftreinigung. Der HYLA STEAMER ist ein ergänzender Trockendampfreiniger mit bis zu 180 °C, der Oberflächen desinfiziert und ohne Chemie von Keimen, Fett und Kalk befreit. Beide Geräte können kombiniert werden."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann ich HYLA auch in Österreich kaufen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Victoria Petermaier ist zertifizierte HYLA Vertriebspartnerin für Österreich, Deutschland und die Schweiz. Mit Schwerpunkt auf Innviertel, Bezirk Braunau und Oberösterreich kommt sie persönlich zur Vorführung zu dir nach Hause. Kauf ist auch per Online-Bestelllink möglich."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Braucht das HYLA Gerät spezielle Reinigungsmittel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Das HYLA System funktioniert komplett ohne Chemie. Als Filtermedium wird nur Wasser verwendet. Kein Reinigungsmittel, kein Beutel, kein Ersatzfilter – das macht es besonders wirtschaftlich und umweltfreundlich."
+      }
+    }
+  ]
 }
 </script>
 <style>
@@ -612,6 +754,44 @@ a    { text-decoration: none; color: inherit; }
 .form-checkbox a { color: var(--sage-deep); text-decoration: underline; }
 
 /* ============================
+   FAQ
+   ============================ */
+#faq { background: var(--cream-mid); }
+.faq-inner { max-width: 860px; margin: 0 auto; }
+.faq-list { margin-top: 56px; display: flex; flex-direction: column; gap: 0; }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  opacity: 0; transform: translateY(20px);
+}
+.faq-item:first-child { border-top: 1px solid var(--border); }
+.faq-btn {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  padding: 26px 0; background: none; border: none; cursor: pointer;
+  text-align: left; gap: 24px;
+}
+.faq-q {
+  font-family: var(--fh); font-size: clamp(17px, 2vw, 22px);
+  font-weight: 400; color: var(--text); line-height: 1.3;
+}
+.faq-icon {
+  width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%;
+  border: 1.5px solid var(--sage-mid); display: flex; align-items: center;
+  justify-content: center; transition: transform .35s var(--ease-out), background .3s;
+}
+.faq-icon svg { width: 14px; height: 14px; stroke: var(--sage-mid); stroke-width: 2; fill: none; transition: stroke .3s; }
+.faq-item.open .faq-icon { transform: rotate(45deg); background: var(--sage-deep); }
+.faq-item.open .faq-icon svg { stroke: var(--white); }
+.faq-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height .45s var(--ease-out), padding .35s;
+}
+.faq-item.open .faq-answer { max-height: 400px; }
+.faq-answer p {
+  font-size: 15.5px; color: var(--muted); line-height: 1.8;
+  padding-bottom: 26px;
+}
+
+/* ============================
    FOOTER
    ============================ */
 footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88px 64px 44px; }
@@ -960,6 +1140,77 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section">
+  <div class="faq-inner">
+    <div class="s-eye" style="text-align:center">Häufige Fragen</div>
+    <h2 class="s-title" style="text-align:center">Alles, was du<br><em>wissen möchtest.</em></h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-q">Was kostet eine HYLA-Vorführung?</span>
+          <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Die Vorführung ist völlig kostenlos und unverbindlich. Ich komme direkt zu dir nach Hause, zeige dir das Gerät live und beantworte alle Fragen – ohne Kaufdruck, ohne versteckte Kosten.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-q">Ist HYLA für Allergiker geeignet?</span>
+          <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Ja – das HYLA System wurde besonders für Allergiker entwickelt. Das Wasserfilter-Prinzip bindet Staub, Milben, Pollen und Tierhaare im Wasser, statt sie wieder in die Luft zu blasen. Das Ergebnis: messbar bessere Luft im Raum.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-q">Wie funktioniert das Wasserfilter-System?</span>
+          <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Statt Staub in einem Beutel oder Filter zu sammeln, wird er direkt ins Wasser geleitet und dort gebunden. Nach dem Saugen einfach ausleeren – fertig. Keine Beutel, keine teuren Ersatzfilter, keine Chemie.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-q">Was ist der Unterschied zwischen HYLA EST und HYLA STEAMER?</span>
+          <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Das HYLA EST ist das Wasserfilter-System für Staubsaugen und Luftreinigung. Der HYLA STEAMER ist ein ergänzender Trockendampfreiniger mit bis zu 180 °C, der Oberflächen chemiefreidesinfiziert – von Küche über Bad bis zum Polster. Beide können kombiniert werden.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-q">Kann ich HYLA auch in Österreich kaufen?</span>
+          <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Ja. Als zertifizierte HYLA Vertriebspartnerin betreue ich Kunden in Österreich, Deutschland und der Schweiz. Im Schwerpunkt Innviertel, Bezirk Braunau und Oberösterreich komme ich persönlich zu dir – Kauf ist auch per Online-Bestelllink möglich.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-q">Braucht das HYLA Gerät spezielle Reinigungsmittel?</span>
+          <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Nein. Das HYLA System arbeitet ausschließlich mit Wasser als Filtermedium – kein Reinigungsmittel, kein Beutel, kein Ersatzfilter. Das macht es besonders wirtschaftlich und umweltfreundlich im Alltag.</p>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
