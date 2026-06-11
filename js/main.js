@@ -413,7 +413,7 @@ if (skipHeavy) { document.getElementById('sol-water').style.display = 'none'; }
     const body =
       'Name: ' + d.vorname + ' ' + d.nachname + '\n' +
       'E-Mail: ' + d.email + '\n' +
-      'Telefon: ' + d.telefon + '\n' +
+      'Telefon: ' + (d.telefon || '–') + '\n' +
       'Wohnort: ' + d.wohnort + '\n' +
       'Anliegen: ' + (d.anliegen || '–') + '\n' +
       'Kontaktweg: ' + (d.kontaktweg || '–') + '\n' +
