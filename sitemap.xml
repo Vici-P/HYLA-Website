@@ -26,31 +26,31 @@
   </url>
   <url>
     <loc>https://deinfrosch.at/blog/hyla-steamer-dampfreiniger.html</loc>
-    <lastmod>2026-04-30</lastmod>
+    <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://deinfrosch.at/blog/hyla-abendroutine.html</loc>
-    <lastmod>2026-04-30</lastmod>
+    <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://deinfrosch.at/blog/hyla-kaufen.html</loc>
-    <lastmod>2026-04-30</lastmod>
+    <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://deinfrosch.at/blog/hyla-braunau-innviertel.html</loc>
-    <lastmod>2026-04-30</lastmod>
+    <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://deinfrosch.at/blog/hyla-beratung-vorfuehrung.html</loc>
-    <lastmod>2026-04-30</lastmod>
+    <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -71,5 +71,17 @@
     <lastmod>2026-05-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://deinfrosch.at/impressum.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://deinfrosch.at/datenschutz.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>
