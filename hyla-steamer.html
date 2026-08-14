@@ -14,7 +14,7 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="HYLA STEAMER – Trockendampfreiniger | dein frosch">
-<meta name="twitter:description" content="HYLA STEAMER – ab 2.140 €. Bis 180 °C Trockendampf, ohne Chemie. Lieferung frei Haus, 14 Tage Rückgaberecht.">
+<meta name="twitter:description" content="HYLA STEAMER – bis 180 °C Trockendampf, ohne Chemie. Persönliche Beratung durch Victoria Petermaier.">
 <meta name="twitter:image" content="https://deinfrosch.at/Branding/Bilder/Produkte/Steamer.jpg">
 
 <link rel="preload" as="image" href="Branding/Bilder/Produkte/SteamerHero.webp" fetchpriority="high">
@@ -27,18 +27,29 @@
   "@type": "Product",
   "name": "HYLA STEAMER",
   "description": "Der HYLA STEAMER ist ein Trockendampfreiniger mit bis zu 180 °C Dampftemperatur. Er reinigt chemiefrei nahezu alle Oberflächen – entfernt Keime, Fett, Kalk und Schmutz ohne Rückstände. Kompatibel mit dem HYLA EST-System.",
-  "brand": { "@type": "Brand", "name": "HYLA" },
+  "brand": {
+    "@type": "Brand",
+    "name": "HYLA"
+  },
   "image": "https://deinfrosch.at/Branding/Bilder/Produkte/SteamerHero.webp",
   "url": "https://deinfrosch.at/hyla-steamer.html",
-  "offers": [
-    { "@type": "Offer", "priceCurrency": "EUR", "price": "2190", "availability": "https://schema.org/InStock", "itemCondition": "https://schema.org/NewCondition", "url": "https://deinfrosch.at/hyla-steamer.html", "priceValidUntil": "2026-12-31", "eligibleRegion": { "@type": "Country", "name": "AT" }, "seller": { "@type": "Person", "name": "Victoria Petermaier", "url": "https://deinfrosch.at/" }, "hasMerchantReturnPolicy": { "@type": "MerchantReturnPolicy", "applicableCountry": ["AT", "DE"], "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow", "merchantReturnDays": 14, "returnMethod": "https://schema.org/ReturnByMail", "returnFees": "https://schema.org/FreeReturn" }, "shippingDetails": { "@type": "OfferShippingDetails", "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "EUR" }, "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "AT" } } },
-    { "@type": "Offer", "priceCurrency": "EUR", "price": "2140", "availability": "https://schema.org/InStock", "itemCondition": "https://schema.org/NewCondition", "url": "https://deinfrosch.at/hyla-steamer.html", "priceValidUntil": "2026-12-31", "eligibleRegion": { "@type": "Country", "name": "DE" }, "seller": { "@type": "Person", "name": "Victoria Petermaier", "url": "https://deinfrosch.at/" }, "hasMerchantReturnPolicy": { "@type": "MerchantReturnPolicy", "applicableCountry": ["AT", "DE"], "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow", "merchantReturnDays": 14, "returnMethod": "https://schema.org/ReturnByMail", "returnFees": "https://schema.org/FreeReturn" }, "shippingDetails": { "@type": "OfferShippingDetails", "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "EUR" }, "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "DE" } } }
-  ],
   "category": "Reinigungsgeräte / Dampfreiniger",
   "additionalProperty": [
-    { "@type": "PropertyValue", "name": "Dampftemperatur", "value": "bis zu 180 °C" },
-    { "@type": "PropertyValue", "name": "Chemiefreiheit", "value": "Ja" },
-    { "@type": "PropertyValue", "name": "Reinigungsart", "value": "Trockendampf" }
+    {
+      "@type": "PropertyValue",
+      "name": "Dampftemperatur",
+      "value": "bis zu 180 °C"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Chemiefreiheit",
+      "value": "Ja"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Reinigungsart",
+      "value": "Trockendampf"
+    }
   ]
 }
 </script>
@@ -48,8 +59,18 @@
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://deinfrosch.at/" },
-    { "@type": "ListItem", "position": 2, "name": "HYLA STEAMER", "item": "https://deinfrosch.at/hyla-steamer.html" }
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Startseite",
+      "item": "https://deinfrosch.at/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "HYLA STEAMER",
+      "item": "https://deinfrosch.at/hyla-steamer.html"
+    }
   ]
 }
 </script>
@@ -217,14 +238,8 @@ a    { text-decoration: none; color: inherit; }
 
 /* PAGE CTA */
 .price-section { max-width: 1000px; margin: 0 auto; padding: 110px 64px; text-align: center; }
-.price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 48px; max-width: 680px; margin-left: auto; margin-right: auto; }
-.price-card { background: var(--cream-mid); border: 1px solid var(--border); border-radius: 20px; padding: 34px 20px; display: flex; flex-direction: column; align-items: center; gap: 7px; }
-.price-flag { font-size: 30px; line-height: 1; }
-.price-country { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
-.price-amount { font-family: var(--fh); font-size: 40px; color: var(--sage-deep); line-height: 1.1; }
-.price-note { font-size: 12px; color: var(--muted); }
 .price-sub { margin: 34px auto 0; font-size: 14px; color: var(--muted); max-width: 660px; line-height: 1.7; }
-@media (max-width: 760px) { .price-section { padding: 72px 20px; } .price-grid { grid-template-columns: 1fr; gap: 14px; } .price-amount { font-size: 34px; } }
+@media (max-width: 760px) { .price-section { padding: 72px 20px; } }
 .page-cta { padding: 110px 64px; text-align: center; }
 .page-cta h2 {
   font-family: var(--fh); font-size: clamp(32px, 4vw, 56px);
@@ -587,13 +602,9 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
 
 <!-- PRICE -->
 <section class="price-section" id="preis">
-  <div class="s-eye" style="text-align:center">Preis</div>
-  <h2 class="s-title" style="text-align:center">Was kostet der <em>HYLA STEAMER</em>?</h2>
-  <div class="price-grid">
-    <div class="price-card"><span class="price-flag">🇦🇹</span><span class="price-country">Österreich</span><span class="price-amount">2.190 €</span><span class="price-note">inkl. MwSt.</span></div>
-    <div class="price-card"><span class="price-flag">🇩🇪</span><span class="price-country">Deutschland</span><span class="price-amount">2.140 €</span><span class="price-note">inkl. MwSt.</span></div>
-  </div>
-  <p class="price-sub">Alle Preise inkl. MwSt. · Lieferung frei Haus · 14 Tage Rückgaberecht. In Österreich auch mit UID-Nummer bestellbar (Steuer wird dann nicht direkt an HYLA gezahlt).</p>
+  <div class="s-eye" style="text-align:center">Auf Anfrage</div>
+  <h2 class="s-title" style="text-align:center">Alles Weitere <em>persönlich</em></h2>
+  <p class="price-sub">Ob der STEAMER für dich Sinn macht, hängt von deinem Zuhause ab. Sprich mich einfach unverbindlich an – ich sage dir alles Weitere gerne persönlich.</p>
 </section>
 
 <!-- CTA -->
