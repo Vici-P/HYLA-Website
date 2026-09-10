@@ -298,8 +298,8 @@ footer { background: var(--sage-deep); color: rgba(255,255,255,.6); padding: 88p
   #nav, #nav.scrolled { padding: 16px 20px; }
   .nav-burger { display: flex; }
   .nav-back { display: none; }
-  #nav .nav-links { position: fixed; inset: 0; flex-direction: column; align-items: center; justify-content: center; gap: 40px; background: var(--cream); opacity: 0; pointer-events: none; transition: opacity .35s var(--ease-out); z-index: 999; }
-  #nav .nav-links.open { opacity: 1; pointer-events: auto; }
+  #nav .nav-links { position: fixed; inset: 0; flex-direction: column; align-items: center; justify-content: center; gap: 40px; background: linear-gradient(160deg, var(--cream) 0%, #e8f0ec 100%); opacity: 0; pointer-events: none; transition: opacity .35s var(--ease-out); z-index: 999; }
+  #nav .nav-links.open { opacity: 1; pointer-events: auto; } /* backdrop-filter macht #nav zum containing block fuer position:fixed-Kinder - das Menue-Overlay wuerde sonst auf Navhoehe schrumpfen */ #nav.scrolled { background: var(--cream); backdrop-filter: none; -webkit-backdrop-filter: none; }
   #nav .nav-links a { font-size: 22px; letter-spacing: .08em; }
   .prod-hero { grid-template-columns: 1fr; min-height: auto; padding-top: 80px; }
   .prod-hero-img { height: 280px; order: -1; }
